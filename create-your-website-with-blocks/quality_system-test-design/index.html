@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Quality_system-test design</title>
+<meta name="robots" content="max-image-preview:large">
+<link rel="dns-prefetch" href="//s.w.org">
+<link rel="alternate" type="application/rss+xml" title=" &raquo; Feed" href="/feed/">
+<link rel="alternate" type="application/rss+xml" title=" &raquo; Comments Feed" href="/comments/feed/">
+		<script>
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/noroff.local\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.8.1"}};
+			!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style>img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}</style>
+	<link rel="stylesheet" id="wpcfs-form-css" href="/wp-content/plugins/wp-custom-fields-search/templates/form.css?ver=5.8.1" media="all">
+<link rel="stylesheet" id="codepeople-search-in-place-style-css" href="/wp-content/plugins/search-in-place/css/codepeople_shearch_in_place.css?ver=1.0.83" media="all">
+<link rel="stylesheet" id="wp-block-library-css" href="/wp-includes/css/dist/block-library/style.min.css?ver=5.8.1" media="all">
+<style id="wp-block-library-theme-inline-css">#start-resizable-editor-section{display:none}.wp-block-audio figcaption{color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-audio figcaption{color:hsla(0,0%,100%,.65)}.wp-block-code{font-family:Menlo,Consolas,monaco,monospace;color:#1e1e1e;padding:.8em 1em;border:1px solid #ddd;border-radius:4px}.wp-block-embed figcaption{color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-embed figcaption{color:hsla(0,0%,100%,.65)}.blocks-gallery-caption{color:#555;font-size:13px;text-align:center}.is-dark-theme .blocks-gallery-caption{color:hsla(0,0%,100%,.65)}.wp-block-image figcaption{color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-image figcaption{color:hsla(0,0%,100%,.65)}.wp-block-pullquote{border-top:4px solid;border-bottom:4px solid;margin-bottom:1.75em;color:currentColor}.wp-block-pullquote__citation,.wp-block-pullquote cite,.wp-block-pullquote footer{color:currentColor;text-transform:uppercase;font-size:.8125em;font-style:normal}.wp-block-quote{border-left:.25em solid;margin:0 0 1.75em;padding-left:1em}.wp-block-quote cite,.wp-block-quote footer{color:currentColor;font-size:.8125em;position:relative;font-style:normal}.wp-block-quote.has-text-align-right{border-left:none;border-right:.25em solid;padding-left:0;padding-right:1em}.wp-block-quote.has-text-align-center{border:none;padding-left:0}.wp-block-quote.is-large,.wp-block-quote.is-style-large{border:none}.wp-block-search .wp-block-search__label{font-weight:700}.wp-block-group.has-background{padding:1.25em 2.375em;margin-top:0;margin-bottom:0}.wp-block-separator{border:none;border-bottom:2px solid;margin-left:auto;margin-right:auto;opacity:.4}.wp-block-separator:not(.is-style-wide):not(.is-style-dots){width:100px}.wp-block-separator.has-background:not(.is-style-dots){border-bottom:none;height:1px}.wp-block-separator.has-background:not(.is-style-wide):not(.is-style-dots){height:2px}.wp-block-table thead{border-bottom:3px solid}.wp-block-table tfoot{border-top:3px solid}.wp-block-table td,.wp-block-table th{padding:.5em;border:1px solid;word-break:normal}.wp-block-table figcaption{color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-table figcaption{color:hsla(0,0%,100%,.65)}.wp-block-video figcaption{color:#555;font-size:13px;text-align:center}.is-dark-theme .wp-block-video figcaption{color:hsla(0,0%,100%,.65)}.wp-block-template-part.has-background{padding:1.25em 2.375em;margin-top:0;margin-bottom:0}#end-resizable-editor-section{display:none}</style>
+<link rel="stylesheet" id="wp-components-css" href="/wp-includes/css/dist/components/style.min.css?ver=5.8.1" media="all">
+<link rel="stylesheet" id="wp-block-editor-css" href="/wp-includes/css/dist/block-editor/style.min.css?ver=5.8.1" media="all">
+<link rel="stylesheet" id="wp-nux-css" href="/wp-includes/css/dist/nux/style.min.css?ver=5.8.1" media="all">
+<link rel="stylesheet" id="wp-reusable-blocks-css" href="/wp-includes/css/dist/reusable-blocks/style.min.css?ver=5.8.1" media="all">
+<link rel="stylesheet" id="wp-editor-css" href="/wp-includes/css/dist/editor/style.min.css?ver=5.8.1" media="all">
+<link rel="stylesheet" id="wp_plugin_info_card-cgb-style-css-css" href="/wp-content/plugins/wp-plugin-info-card/dist/main.css?ver=3.3.0" media="all">
+<link rel="stylesheet" id="bg-shce-genericons-css" href="/wp-content/plugins/show-hidecollapse-expand/assets/css/genericons/genericons.css?ver=5.8.1" media="all">
+<link rel="stylesheet" id="bg-show-hide-css" href="/wp-content/plugins/show-hidecollapse-expand/assets/css/bg-show-hide.css?ver=5.8.1" media="all">
+<link rel="stylesheet" id="ivory-search-styles-css" href="/wp-content/plugins/add-search-to-menu/public/css/ivory-search.min.css?ver=4.6.6" media="all">
+<link rel="stylesheet" id="twenty-twenty-one-style-css" href="/wp-content/themes/twentytwentyone/style.css?ver=1.4" media="all">
+<style id="twenty-twenty-one-style-inline-css">:root{--global--color-background: #ffffff;--global--color-primary: #000;--global--color-secondary: #000;--button--color-background: #000;--button--color-text-hover: #000;}</style>
+<link rel="stylesheet" id="twenty-twenty-one-print-style-css" href="/wp-content/themes/twentytwentyone/assets/css/print.css?ver=1.4" media="print">
+<link rel="stylesheet" type="text/css" href="/wp-content/plugins/smart-slider-3/Public/SmartSlider3/Application/Frontend/Assets/dist/smartslider.min.css?ver=bc3b14c4" media="all">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?display=swap&amp;family=Rubik:300,400&amp;subset=latin" media="all">
+<style data-related="n2-ss-2">div#n2-ss-2 .n2-ss-slider-1{display:grid;position:relative;}div#n2-ss-2 .n2-ss-slider-2{display:grid;position:relative;overflow:hidden;padding:0px 0px 0px 0px;border:0px solid RGBA(62,62,62,1);border-radius:0px;background-clip:padding-box;background-repeat:repeat;background-position:50% 50%;background-size:cover;background-attachment:scroll;z-index:1;}div#n2-ss-2:not(.n2-ss-loaded) .n2-ss-slider-2{background-image:none !important;}div#n2-ss-2 .n2-ss-slider-3{display:grid;grid-template-areas:'cover';position:relative;overflow:hidden;z-index:10;}div#n2-ss-2 .n2-ss-slider-3 > *{grid-area:cover;}div#n2-ss-2 .n2-ss-slide-backgrounds,div#n2-ss-2 .n2-ss-slider-3 > .n2-ss-divider{position:relative;}div#n2-ss-2 .n2-ss-slide-backgrounds{z-index:10;}div#n2-ss-2 .n2-ss-slide-backgrounds > *{overflow:hidden;}div#n2-ss-2 .n2-ss-slide-background{transform:translateX(-100000px);}div#n2-ss-2 .n2-ss-slider-4{place-self:center;position:relative;width:100%;height:100%;z-index:20;display:grid;grid-template-areas:'slide';}div#n2-ss-2 .n2-ss-slider-4 > *{grid-area:slide;}div#n2-ss-2.n2-ss-full-page--constrain-ratio .n2-ss-slider-4{height:auto;}div#n2-ss-2 .n2-ss-slide{display:grid;place-items:center;grid-auto-columns:100%;position:relative;z-index:20;-webkit-backface-visibility:hidden;transform:translateX(-100000px);}div#n2-ss-2 .n2-ss-slide{perspective:1000px;}div#n2-ss-2 .n2-ss-slide-active{z-index:21;}.n2-ss-background-animation{position:absolute;top:0;left:0;width:100%;height:100%;z-index:3;}div#n2-ss-2 .nextend-arrow{cursor:pointer;overflow:hidden;line-height:0 !important;z-index:18;}div#n2-ss-2 .nextend-arrow img{position:relative;display:block;}div#n2-ss-2 .nextend-arrow img.n2-arrow-hover-img{display:none;}div#n2-ss-2 .nextend-arrow:HOVER img.n2-arrow-hover-img{display:inline;}div#n2-ss-2 .nextend-arrow:HOVER img.n2-arrow-normal-img{display:none;}div#n2-ss-2 .nextend-arrow-animated{overflow:hidden;}div#n2-ss-2 .nextend-arrow-animated > div{position:relative;}div#n2-ss-2 .nextend-arrow-animated .n2-active{position:absolute;}div#n2-ss-2 .nextend-arrow-animated-fade{transition:background 0.3s, opacity 0.4s;}div#n2-ss-2 .nextend-arrow-animated-horizontal > div{transition:all 0.4s;transform:none;}div#n2-ss-2 .nextend-arrow-animated-horizontal .n2-active{top:0;}div#n2-ss-2 .nextend-arrow-previous.nextend-arrow-animated-horizontal .n2-active{left:100%;}div#n2-ss-2 .nextend-arrow-next.nextend-arrow-animated-horizontal .n2-active{right:100%;}div#n2-ss-2 .nextend-arrow-previous.nextend-arrow-animated-horizontal:HOVER > div,div#n2-ss-2 .nextend-arrow-previous.nextend-arrow-animated-horizontal:FOCUS > div{transform:translateX(-100%);}div#n2-ss-2 .nextend-arrow-next.nextend-arrow-animated-horizontal:HOVER > div,div#n2-ss-2 .nextend-arrow-next.nextend-arrow-animated-horizontal:FOCUS > div{transform:translateX(100%);}div#n2-ss-2 .nextend-arrow-animated-vertical > div{transition:all 0.4s;transform:none;}div#n2-ss-2 .nextend-arrow-animated-vertical .n2-active{left:0;}div#n2-ss-2 .nextend-arrow-previous.nextend-arrow-animated-vertical .n2-active{top:100%;}div#n2-ss-2 .nextend-arrow-next.nextend-arrow-animated-vertical .n2-active{bottom:100%;}div#n2-ss-2 .nextend-arrow-previous.nextend-arrow-animated-vertical:HOVER > div,div#n2-ss-2 .nextend-arrow-previous.nextend-arrow-animated-vertical:FOCUS > div{transform:translateY(-100%);}div#n2-ss-2 .nextend-arrow-next.nextend-arrow-animated-vertical:HOVER > div,div#n2-ss-2 .nextend-arrow-next.nextend-arrow-animated-vertical:FOCUS > div{transform:translateY(100%);}div#n2-ss-2 .n2-ss-control-bullet{visibility:hidden;text-align:center;justify-content:center;z-index:14;}div#n2-ss-2 .n2-ss-control-bullet--calculate-size{left:0 !important;}div#n2-ss-2 .n2-ss-control-bullet-horizontal.n2-ss-control-bullet-fullsize{width:100%;}div#n2-ss-2 .n2-ss-control-bullet-vertical.n2-ss-control-bullet-fullsize{height:100%;flex-flow:column;}div#n2-ss-2 .nextend-bullet-bar{display:inline-flex;vertical-align:top;visibility:visible;align-items:center;flex-wrap:wrap;}div#n2-ss-2 .n2-bar-justify-content-left{justify-content:flex-start;}div#n2-ss-2 .n2-bar-justify-content-center{justify-content:center;}div#n2-ss-2 .n2-bar-justify-content-right{justify-content:flex-end;}div#n2-ss-2 .n2-ss-control-bullet-vertical > .nextend-bullet-bar{flex-flow:column;}div#n2-ss-2 .n2-ss-control-bullet-fullsize > .nextend-bullet-bar{display:flex;}div#n2-ss-2 .n2-ss-control-bullet-horizontal.n2-ss-control-bullet-fullsize > .nextend-bullet-bar{flex:1 1 auto;}div#n2-ss-2 .n2-ss-control-bullet-vertical.n2-ss-control-bullet-fullsize > .nextend-bullet-bar{height:100%;}div#n2-ss-2 .nextend-bullet-bar .n2-bullet{cursor:pointer;transition:background-color 0.4s;}div#n2-ss-2 .nextend-bullet-bar .n2-bullet.n2-active{cursor:default;}div#n2-ss-2 div.n2-ss-bullet-thumbnail-container{position:absolute;z-index:10000000;}div#n2-ss-2 .n2-ss-bullet-thumbnail-container .n2-ss-bullet-thumbnail{background-size:cover;background-repeat:no-repeat;background-position:center;}div#n2-ss-2 .n2-font-e7a88244c36048b7e9b590c16db86c42-paragraph{font-family: 'segoe';color: #ffffff;font-size:218.75%;text-shadow: none;line-height: 1.5;font-weight: normal;font-style: normal;text-decoration: none;text-align: inherit;letter-spacing: normal;word-spacing: normal;text-transform: none;font-weight: 600;}div#n2-ss-2 .n2-font-e7a88244c36048b7e9b590c16db86c42-paragraph a, div#n2-ss-2 .n2-font-e7a88244c36048b7e9b590c16db86c42-paragraph a:FOCUS{font-family: 'segoe';color: #1890d7;font-size:100%;text-shadow: none;line-height: 1.5;font-weight: normal;font-style: normal;text-decoration: none;text-align: inherit;letter-spacing: normal;word-spacing: normal;text-transform: none;font-weight: 600;}div#n2-ss-2 .n2-font-e7a88244c36048b7e9b590c16db86c42-paragraph a:HOVER, div#n2-ss-2 .n2-font-e7a88244c36048b7e9b590c16db86c42-paragraph a:ACTIVE{font-family: 'segoe';color: #1890d7;font-size:100%;text-shadow: none;line-height: 1.5;font-weight: normal;font-style: normal;text-decoration: none;text-align: inherit;letter-spacing: normal;word-spacing: normal;text-transform: none;font-weight: 600;}div#n2-ss-2 .n2-style-654fb965c533036469fbf99fa08e4336-heading{background: RGBA(255,255,255,0);opacity:1;padding:0px 0px 0px 0px ;box-shadow: none;border-width: 0px;border-style: solid;border-color: #000000; border-color: RGBA(0,0,0,1);border-radius:0px;}div#n2-ss-2 .n2-style-bcef68443b2682444059e693254dd628-dot{background: RGBA(255,255,255,0);opacity:1;padding:5px 5px 5px 5px ;box-shadow: none;border-width: 2px;border-style: solid;border-color: #ffffff; border-color: RGBA(255,255,255,0.5);border-radius:50px;margin: 4px;}div#n2-ss-2 .n2-style-bcef68443b2682444059e693254dd628-dot.n2-active, div#n2-ss-2 .n2-style-bcef68443b2682444059e693254dd628-dot:HOVER, div#n2-ss-2 .n2-style-bcef68443b2682444059e693254dd628-dot:FOCUS{background: #ffffff;border-width: 2px;border-style: solid;border-color: #ffffff; border-color: RGBA(255,255,255,1);}div#n2-ss-2 .n2-ss-slide-limiter{max-width:1200px;}div#n2-ss-2 .n-uc-ZGRX88l0hCV6{padding:50px 65px 50px 65px}div#n2-ss-2 .n-uc-16610d53ccff8-inner{padding:10px 10px 10px 10px;justify-content:center}div#n2-ss-2 .n-uc-1b6d2e874e4e1{--margin-bottom:15px;max-width:740px}div#n2-ss-2 .n-uc-ak18Tvf4yExq{padding:50px 65px 50px 65px}div#n2-ss-2 .n-uc-1bc3fe1320016-inner{padding:10px 10px 10px 10px;justify-content:center}div#n2-ss-2 .n-uc-R9iPwFDcfDCJ{--margin-bottom:15px;max-width:740px}div#n2-ss-2 .n-uc-SX3HYzgiSICY{padding:50px 65px 50px 65px}div#n2-ss-2 .n-uc-1cf1a6df0ba9b-inner{padding:10px 10px 10px 10px;justify-content:center}div#n2-ss-2 .n-uc-1aff91faa9251{--margin-bottom:15px;max-width:740px}div#n2-ss-2 .nextend-arrow img{width: 32px}@media (min-width: 1200px){div#n2-ss-2 [data-hide-desktopportrait="1"]{display: none !important;}}@media (orientation: landscape) and (max-width: 1199px) and (min-width: 901px),(orientation: portrait) and (max-width: 1199px) and (min-width: 701px){div#n2-ss-2 [data-hide-tabletportrait="1"]{display: none !important;}}@media (orientation: landscape) and (max-width: 900px),(orientation: portrait) and (max-width: 700px){div#n2-ss-2 .n-uc-ZGRX88l0hCV6{padding:50px 0px 50px 0px}div#n2-ss-2 .n-uc-1b6d2e874e4e1{--ssfont-scale:0.7}div#n2-ss-2 .n-uc-ak18Tvf4yExq{padding:50px 0px 50px 0px}div#n2-ss-2 .n-uc-R9iPwFDcfDCJ{--ssfont-scale:0.7}div#n2-ss-2 .n-uc-SX3HYzgiSICY{padding:50px 0px 50px 0px}div#n2-ss-2 .n-uc-1aff91faa9251{--ssfont-scale:0.7}div#n2-ss-2 [data-hide-mobileportrait="1"]{display: none !important;}div#n2-ss-2 .nextend-arrow img{width: 16px}}</style>
+<style data-related="n2-ss-4">div#n2-ss-4 .n2-ss-slider-1{display:grid;box-sizing:border-box;position:relative;background-repeat:repeat;background-position:50% 50%;background-size:cover;background-attachment:scroll;border:0px solid RGBA(62,62,62,1);border-radius:0px;overflow:hidden;}div#n2-ss-4:not(.n2-ss-loaded) .n2-ss-slider-1{background-image:none !important;}div#n2-ss-4 .n2-ss-slider-2{display:grid;place-items:center;position:relative;overflow:hidden;z-index:10;}div#n2-ss-4 .n2-ss-slider-3{position:relative;width:100%;height:100%;z-index:20;display:grid;grid-template-areas:'slide';}div#n2-ss-4 .n2-ss-slider-3 > *{grid-area:slide;}div#n2-ss-4.n2-ss-full-page--constrain-ratio .n2-ss-slider-3{height:auto;}div#n2-ss-4 .n2-ss-slide-backgrounds{position:absolute;left:0;top:0;width:100%;height:100%;}div#n2-ss-4 .n2-ss-slide-backgrounds{z-index:10;}div#n2-ss-4 .n2-ss-slide{display:grid;place-items:center;grid-auto-columns:100%;position:relative;width:100%;height:100%;-webkit-backface-visibility:hidden;z-index:20;}div#n2-ss-4 .n2-ss-slide{perspective:1000px;}div#n2-ss-4 .n-uc-15ef1bbf4bcaf-inner{background-color:RGBA(255,47,1,1);border-width:0px 0px 0px 0px ;border-style:solid;border-color:RGBA(255,255,255,1);border-radius:20px;}div#n2-ss-4 .n-uc-15ef1bbf4bcaf-inner:HOVER{border-width:0px 0px 0px 0px ;border-style:solid;border-color:RGBA(255,255,255,1);}div#n2-ss-4 .n-uc-191adc2a4bcf7-inner{border-width:0px 0px 0px 0px ;border-style:solid;border-color:RGBA(255,255,255,1);}div#n2-ss-4 .n-uc-191adc2a4bcf7-inner:HOVER{border-width:0px 0px 0px 0px ;border-style:solid;border-color:RGBA(255,255,255,1);}div#n2-ss-4 .n2-font-0a3e7fa89e9807043879483ef9cbf599-hover{font-family: 'segoe';color: #ffffff;font-size:162.5%;text-shadow: none;line-height: 1.5;font-weight: normal;font-style: normal;text-decoration: none;text-align: inherit;letter-spacing: -1px;word-spacing: normal;text-transform: none;font-weight: 400;}div#n2-ss-4 .n-uc-10b4708c169f4-inner{border-width:0px 0px 0px 0px ;border-style:solid;border-color:RGBA(255,255,255,1);}div#n2-ss-4 .n-uc-10b4708c169f4-inner:HOVER{border-width:0px 0px 0px 0px ;border-style:solid;border-color:RGBA(255,255,255,1);}div#n2-ss-4 .n-uc-1a9d34b3ac3a2-inner{border-width:0px 0px 0px 0px ;border-style:solid;border-color:RGBA(255,255,255,1);}div#n2-ss-4 .n-uc-1a9d34b3ac3a2-inner:HOVER{border-width:0px 0px 0px 0px ;border-style:solid;border-color:RGBA(255,255,255,1);}div#n2-ss-4 .n-uc-18b79cd797aea-inner{background-color:RGBA(255,255,255,1);border-radius:10px;box-shadow:0px 1px 10px 0px RGBA(0,0,0,0.13);border-width:0px 0px 0px 0px ;border-style:solid;border-color:RGBA(255,255,255,1);}div#n2-ss-4 .n-uc-18b79cd797aea-inner:HOVER{box-shadow:0px 2px 20px 0px RGBA(0,0,0,0.19);border-width:0px 0px 0px 0px ;border-style:solid;border-color:RGBA(255,255,255,1);}div#n2-ss-4 .n2-font-b231beb995d59f799a7c26f9c12d08a1-hover{font-family: 'Rubik','Arial';color: #ff2f01;font-size:106.25%;text-shadow: none;line-height: 1.5;font-weight: normal;font-style: normal;text-decoration: none;text-align: inherit;letter-spacing: normal;word-spacing: normal;text-transform: none;font-weight: bold;}div#n2-ss-4 .n2-font-e9d5534e4b657bc83779529b8d923379-hover{font-family: 'Segoe';color: #000000;font-size:100%;text-shadow: none;line-height: 1.2;font-weight: normal;font-style: normal;text-decoration: none;text-align: inherit;letter-spacing: normal;word-spacing: normal;text-transform: none;font-weight: normal;}div#n2-ss-4 .n-uc-17e419275a4c6-inner{background-color:RGBA(255,255,255,1);border-radius:10px;box-shadow:0px 1px 10px 0px RGBA(0,0,0,0.13);border-width:0px 0px 0px 0px ;border-style:solid;border-color:RGBA(255,255,255,1);}div#n2-ss-4 .n-uc-17e419275a4c6-inner:HOVER{box-shadow:0px 2px 20px 0px RGBA(0,0,0,0.19);border-width:0px 0px 0px 0px ;border-style:solid;border-color:RGBA(255,255,255,1);}div#n2-ss-4 .n2-font-85efc35fad07288bbbec9a997c30a2b5-hover{font-family: 'segoe';color: #000000;font-size:100%;text-shadow: none;line-height: 1.2;font-weight: normal;font-style: normal;text-decoration: none;text-align: inherit;letter-spacing: normal;word-spacing: normal;text-transform: none;font-weight: normal;}div#n2-ss-4 .n-uc-1ffa0c585ed7a-inner{background-color:RGBA(255,255,255,1);border-radius:10px;box-shadow:0px 1px 10px 0px RGBA(0,0,0,0.13);border-width:0px 0px 0px 0px ;border-style:solid;border-color:RGBA(255,255,255,1);}div#n2-ss-4 .n-uc-1ffa0c585ed7a-inner:HOVER{box-shadow:0px 2px 20px 0px RGBA(0,0,0,0.19);border-width:0px 0px 0px 0px ;border-style:solid;border-color:RGBA(255,255,255,1);}div#n2-ss-4 .n-uc-124af27f44e3d-inner{border-width:0px 0px 0px 0px ;border-style:solid;border-color:RGBA(255,255,255,1);}div#n2-ss-4 .n-uc-124af27f44e3d-inner:HOVER{border-width:0px 0px 0px 0px ;border-style:solid;border-color:RGBA(255,255,255,1);}div#n2-ss-4 .n-uc-1ddc65574dd59-inner{background-color:RGBA(255,255,255,1);border-radius:10px;box-shadow:0px 1px 10px 0px RGBA(0,0,0,0.13);border-width:0px 0px 0px 0px ;border-style:solid;border-color:RGBA(255,255,255,1);}div#n2-ss-4 .n-uc-1ddc65574dd59-inner:HOVER{box-shadow:0px 2px 20px 0px RGBA(0,0,0,0.19);border-width:0px 0px 0px 0px ;border-style:solid;border-color:RGBA(255,255,255,1);}div#n2-ss-4 .n-uc-114f708c7d343-inner{background-color:RGBA(255,255,255,1);border-radius:10px;box-shadow:0px 1px 10px 0px RGBA(0,0,0,0.13);border-width:0px 0px 0px 0px ;border-style:solid;border-color:RGBA(255,255,255,1);}div#n2-ss-4 .n-uc-114f708c7d343-inner:HOVER{box-shadow:0px 2px 20px 0px RGBA(0,0,0,0.19);border-width:0px 0px 0px 0px ;border-style:solid;border-color:RGBA(255,255,255,1);}div#n2-ss-4 .n-uc-14c74e63418ad-inner{background-color:RGBA(255,255,255,1);border-radius:10px;box-shadow:0px 1px 10px 0px RGBA(0,0,0,0.13);border-width:0px 0px 0px 0px ;border-style:solid;border-color:RGBA(255,255,255,1);}div#n2-ss-4 .n-uc-14c74e63418ad-inner:HOVER{box-shadow:0px 2px 20px 0px RGBA(0,0,0,0.19);border-width:0px 0px 0px 0px ;border-style:solid;border-color:RGBA(255,255,255,1);}div#n2-ss-4 .n-uc-13314ab3a31c7-inner{border-width:0px 0px 0px 0px ;border-style:solid;border-color:RGBA(255,255,255,1);}div#n2-ss-4 .n-uc-13314ab3a31c7-inner:HOVER{border-width:0px 0px 0px 0px ;border-style:solid;border-color:RGBA(255,255,255,1);}div#n2-ss-4 .n-uc-1c3c82b112218-inner{border-width:0px 0px 0px 0px ;border-style:solid;border-color:RGBA(255,255,255,1);}div#n2-ss-4 .n-uc-1c3c82b112218-inner:HOVER{border-width:0px 0px 0px 0px ;border-style:solid;border-color:RGBA(255,255,255,1);}div#n2-ss-4 .n-uc-16dc434c59836-inner{border-width:0px 0px 0px 0px ;border-style:solid;border-color:RGBA(255,255,255,1);}div#n2-ss-4 .n-uc-16dc434c59836-inner:HOVER{border-width:0px 0px 0px 0px ;border-style:solid;border-color:RGBA(255,255,255,1);}div#n2-ss-4 .n-uc-19d8fbb86be16-inner{border-width:0px 0px 0px 0px ;border-style:solid;border-color:RGBA(255,255,255,1);}div#n2-ss-4 .n-uc-19d8fbb86be16-inner:HOVER{border-width:0px 0px 0px 0px ;border-style:solid;border-color:RGBA(255,255,255,1);}div#n2-ss-4 .n-uc-14307eddb3954-inner{border-width:0px 0px 0px 0px ;border-style:solid;border-color:RGBA(255,255,255,1);}div#n2-ss-4 .n-uc-14307eddb3954-inner:HOVER{border-width:0px 0px 0px 0px ;border-style:solid;border-color:RGBA(255,255,255,1);}div#n2-ss-4 .n-uc-l3YkLr0Px1jG-inner{border-width:0px 0px 0px 0px ;border-style:solid;border-color:RGBA(255,255,255,1);}div#n2-ss-4 .n-uc-l3YkLr0Px1jG-inner:HOVER{border-width:0px 0px 0px 0px ;border-style:solid;border-color:RGBA(255,255,255,1);}div#n2-ss-4 .n-uc-RsBQ1kNwllDb-inner{background-color:RGBA(255,255,255,1);border-radius:10px;box-shadow:0px 1px 10px 0px RGBA(0,0,0,0.13);border-width:0px 0px 0px 0px ;border-style:solid;border-color:RGBA(255,255,255,1);}div#n2-ss-4 .n-uc-RsBQ1kNwllDb-inner:HOVER{box-shadow:0px 2px 20px 0px RGBA(0,0,0,0.19);border-width:0px 0px 0px 0px ;border-style:solid;border-color:RGBA(255,255,255,1);}div#n2-ss-4 .n2-font-d6e06436226a8d3a37a2e11ad74266e0-hover{font-family: 'Rubik','Arial';color: #0c264c;font-size:106.25%;text-shadow: none;line-height: 1.5;font-weight: normal;font-style: normal;text-decoration: none;text-align: inherit;letter-spacing: normal;word-spacing: normal;text-transform: none;font-weight: bold;}div#n2-ss-4 .n-uc-Ojk097KNR83C-inner{background-color:RGBA(255,255,255,1);border-radius:10px;box-shadow:0px 1px 10px 0px RGBA(0,0,0,0.13);border-width:0px 0px 0px 0px ;border-style:solid;border-color:RGBA(255,255,255,1);}div#n2-ss-4 .n-uc-Ojk097KNR83C-inner:HOVER{box-shadow:0px 2px 20px 0px RGBA(0,0,0,0.19);border-width:0px 0px 0px 0px ;border-style:solid;border-color:RGBA(255,255,255,1);}div#n2-ss-4 .n-uc-1e6ad684711a2-inner{background-color:RGBA(255,255,255,1);border-radius:10px;box-shadow:0px 1px 10px 0px RGBA(0,0,0,0.13);border-width:0px 0px 0px 0px ;border-style:solid;border-color:RGBA(255,255,255,1);}div#n2-ss-4 .n-uc-1e6ad684711a2-inner:HOVER{box-shadow:0px 2px 20px 0px RGBA(0,0,0,0.19);border-width:0px 0px 0px 0px ;border-style:solid;border-color:RGBA(255,255,255,1);}div#n2-ss-4 .n-uc-pPDwYuDl9cM7-inner{background-color:RGBA(255,255,255,1);border-radius:10px;box-shadow:0px 1px 10px 0px RGBA(0,0,0,0.13);border-width:0px 0px 0px 0px ;border-style:solid;border-color:RGBA(255,255,255,1);}div#n2-ss-4 .n-uc-pPDwYuDl9cM7-inner:HOVER{box-shadow:0px 2px 20px 0px RGBA(0,0,0,0.19);border-width:0px 0px 0px 0px ;border-style:solid;border-color:RGBA(255,255,255,1);}div#n2-ss-4 .n-uc-G7soEZS8XHfH-inner{border-width:0px 0px 0px 0px ;border-style:solid;border-color:RGBA(255,255,255,1);}div#n2-ss-4 .n-uc-G7soEZS8XHfH-inner:HOVER{border-width:0px 0px 0px 0px ;border-style:solid;border-color:RGBA(255,255,255,1);}div#n2-ss-4 .n-uc-u33sfLUjGqkb-inner{border-width:0px 0px 0px 0px ;border-style:solid;border-color:RGBA(255,255,255,1);}div#n2-ss-4 .n-uc-u33sfLUjGqkb-inner:HOVER{border-width:0px 0px 0px 0px ;border-style:solid;border-color:RGBA(255,255,255,1);}div#n2-ss-4 .n-uc-qNFYjv27Rb1g-inner{border-width:0px 0px 0px 0px ;border-style:solid;border-color:RGBA(255,255,255,1);}div#n2-ss-4 .n-uc-qNFYjv27Rb1g-inner:HOVER{border-width:0px 0px 0px 0px ;border-style:solid;border-color:RGBA(255,255,255,1);}div#n2-ss-4 .n-uc-dg1dpr1cyxR8-inner{border-width:0px 0px 0px 0px ;border-style:solid;border-color:RGBA(255,255,255,1);}div#n2-ss-4 .n-uc-dg1dpr1cyxR8-inner:HOVER{border-width:0px 0px 0px 0px ;border-style:solid;border-color:RGBA(255,255,255,1);}div#n2-ss-4 .n-uc-Bupo5WWKvg7k-inner{border-width:0px 0px 0px 0px ;border-style:solid;border-color:RGBA(255,255,255,1);}div#n2-ss-4 .n-uc-Bupo5WWKvg7k-inner:HOVER{border-width:0px 0px 0px 0px ;border-style:solid;border-color:RGBA(255,255,255,1);}div#n2-ss-4 .n2-ss-slide-limiter{max-width:1200px;}div#n2-ss-4 .n-uc-dwgVErEQ5HUl{padding:10px 10px 10px 10px}div#n2-ss-4 .n-uc-1f494b8b049b9-inner{padding:10px 0px 10px 0px;justify-content:center}div#n2-ss-4 .n-uc-1f494b8b049b9{align-self:center;}div#n2-ss-4 .n-uc-15ef1bbf4bcaf-inner{padding:40px 80px 40px 80px}div#n2-ss-4 .n-uc-15ef1bbf4bcaf-inner > .n2-ss-layer-row-inner{width:calc(100% + 1px);margin:-0px}div#n2-ss-4 .n-uc-15ef1bbf4bcaf-inner > .n2-ss-layer-row-inner > .n2-ss-layer[data-sstype="col"]{margin:0px}div#n2-ss-4 .n-uc-191adc2a4bcf7-inner{padding:0px 0px 0px 0px;text-align:left;--ssselfalign:var(--ss-fs);;justify-content:center}div#n2-ss-4 .n-uc-191adc2a4bcf7{width:50%}div#n2-ss-4 .n-uc-12397d36ccea0{--margin-bottom:10px}div#n2-ss-4 .n-uc-10b4708c169f4-inner{padding:0px 0px 0px 0px;justify-content:center}div#n2-ss-4 .n-uc-10b4708c169f4{width:50%}div#n2-ss-4 .n-uc-1a9d34b3ac3a2-inner{padding:10px 40px 10px 40px}div#n2-ss-4 .n-uc-1a9d34b3ac3a2-inner > .n2-ss-layer-row-inner{width:calc(100% + 31px);margin:-15px}div#n2-ss-4 .n-uc-1a9d34b3ac3a2-inner > .n2-ss-layer-row-inner > .n2-ss-layer[data-sstype="col"]{margin:15px}div#n2-ss-4 .n-uc-1a9d34b3ac3a2{--margin-top:-20px}div#n2-ss-4 .n-uc-18b79cd797aea-inner{padding:40px 10px 30px 10px;justify-content:center}div#n2-ss-4 .n-uc-18b79cd797aea{width:33.3%}div#n2-ss-4 .n-uc-e0KzwopVAo5h{--margin-bottom:20px;max-width:55px}div#n2-ss-4 .n-uc-17e419275a4c6-inner{padding:40px 10px 30px 10px;justify-content:center}div#n2-ss-4 .n-uc-17e419275a4c6{width:33.3%}div#n2-ss-4 .n-uc-ZDWSkZUJNGxB{--margin-bottom:20px;max-width:45px}div#n2-ss-4 .n-uc-1ffa0c585ed7a-inner{padding:40px 10px 30px 10px;justify-content:center}div#n2-ss-4 .n-uc-1ffa0c585ed7a{width:33.3%}div#n2-ss-4 .n-uc-kCV32gVEqgud{--margin-bottom:20px;max-width:50px}div#n2-ss-4 .n-uc-124af27f44e3d-inner{padding:10px 40px 10px 40px}div#n2-ss-4 .n-uc-124af27f44e3d-inner > .n2-ss-layer-row-inner{width:calc(100% + 30px);margin:-14.5px;flex-wrap:wrap;}div#n2-ss-4 .n-uc-124af27f44e3d-inner > .n2-ss-layer-row-inner > .n2-ss-layer[data-sstype="col"]{margin:14.5px}div#n2-ss-4 .n-uc-1ddc65574dd59-inner{padding:40px 10px 30px 10px;justify-content:center}div#n2-ss-4 .n-uc-1ddc65574dd59{width:calc(33% - 29px)}div#n2-ss-4 .n-uc-1fedcb60f6b70{--margin-bottom:20px;max-width:60px}div#n2-ss-4 .n-uc-114f708c7d343-inner{padding:40px 10px 30px 10px;justify-content:center}div#n2-ss-4 .n-uc-114f708c7d343{width:calc(33% - 29px)}div#n2-ss-4 .n-uc-15b7326ce16c7{--margin-bottom:20px;max-width:50px}div#n2-ss-4 .n-uc-14c74e63418ad-inner{padding:40px 10px 30px 10px;justify-content:center}div#n2-ss-4 .n-uc-14c74e63418ad{width:calc(33% - 29px)}div#n2-ss-4 .n-uc-100000b36b37d{--margin-bottom:20px;max-width:50px}div#n2-ss-4 .n-uc-13314ab3a31c7-inner{padding:10px 10px 10px 10px}div#n2-ss-4 .n-uc-13314ab3a31c7-inner > .n2-ss-layer-row-inner{width:calc(100% + 21px);margin:-10px}div#n2-ss-4 .n-uc-13314ab3a31c7-inner > .n2-ss-layer-row-inner > .n2-ss-layer[data-sstype="col"]{margin:10px}div#n2-ss-4 .n-uc-1c3c82b112218-inner{padding:10px 10px 10px 10px;justify-content:center}div#n2-ss-4 .n-uc-1c3c82b112218{width:25%}div#n2-ss-4 .n-uc-16dc434c59836-inner{padding:10px 10px 10px 10px;justify-content:center}div#n2-ss-4 .n-uc-16dc434c59836{width:25%}div#n2-ss-4 .n-uc-19d8fbb86be16-inner{padding:10px 10px 10px 10px;justify-content:center}div#n2-ss-4 .n-uc-19d8fbb86be16{width:25%}div#n2-ss-4 .n-uc-14307eddb3954-inner{padding:10px 10px 10px 10px;justify-content:space-around}div#n2-ss-4 .n-uc-14307eddb3954{width:25%}div#n2-ss-4 .n-uc-XzcyLzq2iwyN{padding:10px 10px 10px 10px}div#n2-ss-4 .n-uc-OZgo5I38Hl0W-inner{padding:10px 0px 10px 0px;justify-content:center}div#n2-ss-4 .n-uc-OZgo5I38Hl0W{align-self:center;}div#n2-ss-4 .n-uc-l3YkLr0Px1jG-inner{padding:10px 40px 10px 40px}div#n2-ss-4 .n-uc-l3YkLr0Px1jG-inner > .n2-ss-layer-row-inner{width:calc(100% + 31px);margin:-15px}div#n2-ss-4 .n-uc-l3YkLr0Px1jG-inner > .n2-ss-layer-row-inner > .n2-ss-layer[data-sstype="col"]{margin:15px}div#n2-ss-4 .n-uc-l3YkLr0Px1jG{--margin-top:-20px}div#n2-ss-4 .n-uc-RsBQ1kNwllDb-inner{padding:40px 10px 30px 10px;justify-content:center}div#n2-ss-4 .n-uc-RsBQ1kNwllDb{width:25%}div#n2-ss-4 .n-uc-1oDYYP8bfijY{height:150px}div#n2-ss-4 .n-uc-Ojk097KNR83C-inner{padding:40px 10px 30px 10px;justify-content:center}div#n2-ss-4 .n-uc-Ojk097KNR83C{width:25%}div#n2-ss-4 .n-uc-LE02zA8IubOs{--margin-bottom:20px}div#n2-ss-4 .n-uc-1e6ad684711a2-inner{padding:40px 10px 30px 10px;justify-content:center}div#n2-ss-4 .n-uc-1e6ad684711a2{width:25%}div#n2-ss-4 .n-uc-1bfb8062f8e29{--margin-bottom:20px}div#n2-ss-4 .n-uc-pPDwYuDl9cM7-inner{padding:40px 10px 30px 10px;justify-content:center}div#n2-ss-4 .n-uc-pPDwYuDl9cM7{width:25%}div#n2-ss-4 .n-uc-kzGGZV9ARo33{--margin-bottom:20px}div#n2-ss-4 .n-uc-G7soEZS8XHfH-inner{padding:10px 10px 10px 10px}div#n2-ss-4 .n-uc-G7soEZS8XHfH-inner > .n2-ss-layer-row-inner{width:calc(100% + 21px);margin:-10px}div#n2-ss-4 .n-uc-G7soEZS8XHfH-inner > .n2-ss-layer-row-inner > .n2-ss-layer[data-sstype="col"]{margin:10px}div#n2-ss-4 .n-uc-u33sfLUjGqkb-inner{padding:10px 10px 10px 10px;justify-content:center}div#n2-ss-4 .n-uc-u33sfLUjGqkb{width:25%}div#n2-ss-4 .n-uc-qNFYjv27Rb1g-inner{padding:10px 10px 10px 10px;justify-content:center}div#n2-ss-4 .n-uc-qNFYjv27Rb1g{width:25%}div#n2-ss-4 .n-uc-dg1dpr1cyxR8-inner{padding:10px 10px 10px 10px;justify-content:center}div#n2-ss-4 .n-uc-dg1dpr1cyxR8{width:25%}div#n2-ss-4 .n-uc-Bupo5WWKvg7k-inner{padding:10px 10px 10px 10px;justify-content:space-around}div#n2-ss-4 .n-uc-Bupo5WWKvg7k{width:25%}@media (min-width: 1200px){div#n2-ss-4 [data-hide-desktopportrait="1"]{display: none !important;}}@media (orientation: landscape) and (max-width: 1199px) and (min-width: 901px),(orientation: portrait) and (max-width: 1199px) and (min-width: 701px){div#n2-ss-4 .n-uc-15ef1bbf4bcaf-inner{padding:40px 40px 40px 40px}div#n2-ss-4 .n-uc-191adc2a4bcf7{width:50%}div#n2-ss-4 .n-uc-12397d36ccea0{--ssfont-scale:0.7}div#n2-ss-4 .n-uc-10b4708c169f4{width:50%}div#n2-ss-4 .n-uc-1a9d34b3ac3a2-inner{padding:10px 10px 10px 10px}div#n2-ss-4 .n-uc-1a9d34b3ac3a2-inner > .n2-ss-layer-row-inner{width:calc(100% + 11px);margin:-5px}div#n2-ss-4 .n-uc-1a9d34b3ac3a2-inner > .n2-ss-layer-row-inner > .n2-ss-layer[data-sstype="col"]{margin:5px}div#n2-ss-4 .n-uc-18b79cd797aea-inner{padding:30px 10px 20px 10px}div#n2-ss-4 .n-uc-18b79cd797aea{width:33.3%}div#n2-ss-4 .n-uc-e0KzwopVAo5h{--margin-bottom:10px}div#n2-ss-4 .n-uc-eXBhDyRsdSNT{--ssfont-scale:0.9}div#n2-ss-4 .n-uc-17e419275a4c6-inner{padding:30px 10px 20px 10px}div#n2-ss-4 .n-uc-17e419275a4c6{width:33.3%}div#n2-ss-4 .n-uc-ZDWSkZUJNGxB{--margin-bottom:10px}div#n2-ss-4 .n-uc-cuG6mfNjGa5D{--ssfont-scale:0.9}div#n2-ss-4 .n-uc-1ffa0c585ed7a-inner{padding:30px 10px 20px 10px}div#n2-ss-4 .n-uc-1ffa0c585ed7a{width:33.3%}div#n2-ss-4 .n-uc-kCV32gVEqgud{--margin-bottom:10px}div#n2-ss-4 .n-uc-APg4aWBk5c8s{--ssfont-scale:0.9}div#n2-ss-4 .n-uc-124af27f44e3d-inner{padding:10px 10px 10px 10px}div#n2-ss-4 .n-uc-124af27f44e3d-inner > .n2-ss-layer-row-inner{width:calc(100% + 11px);margin:-5px;flex-wrap:wrap;}div#n2-ss-4 .n-uc-124af27f44e3d-inner > .n2-ss-layer-row-inner > .n2-ss-layer[data-sstype="col"]{margin:5px}div#n2-ss-4 .n-uc-1ddc65574dd59-inner{padding:30px 10px 20px 10px}div#n2-ss-4 .n-uc-1ddc65574dd59{width:calc(33% - 10px)}div#n2-ss-4 .n-uc-1fedcb60f6b70{--margin-bottom:10px}div#n2-ss-4 .n-uc-1288f53cd395f{--ssfont-scale:0.9}div#n2-ss-4 .n-uc-114f708c7d343-inner{padding:30px 10px 20px 10px}div#n2-ss-4 .n-uc-114f708c7d343{width:calc(33% - 10px)}div#n2-ss-4 .n-uc-15b7326ce16c7{--margin-bottom:10px}div#n2-ss-4 .n-uc-1b144254bd4bc{--ssfont-scale:0.9}div#n2-ss-4 .n-uc-14c74e63418ad-inner{padding:30px 10px 20px 10px}div#n2-ss-4 .n-uc-14c74e63418ad{width:calc(33% - 10px)}div#n2-ss-4 .n-uc-100000b36b37d{--margin-bottom:10px}div#n2-ss-4 .n-uc-1bc6041dfae43{--ssfont-scale:0.9}div#n2-ss-4 .n-uc-1c3c82b112218{width:25%}div#n2-ss-4 .n-uc-16dc434c59836{width:25%}div#n2-ss-4 .n-uc-19d8fbb86be16{width:25%}div#n2-ss-4 .n-uc-14307eddb3954{width:25%}div#n2-ss-4 .n-uc-l3YkLr0Px1jG-inner{padding:10px 10px 10px 10px}div#n2-ss-4 .n-uc-l3YkLr0Px1jG-inner > .n2-ss-layer-row-inner{width:calc(100% + 11px);margin:-5px}div#n2-ss-4 .n-uc-l3YkLr0Px1jG-inner > .n2-ss-layer-row-inner > .n2-ss-layer[data-sstype="col"]{margin:5px}div#n2-ss-4 .n-uc-RsBQ1kNwllDb-inner{padding:30px 10px 20px 10px}div#n2-ss-4 .n-uc-RsBQ1kNwllDb{width:25%}div#n2-ss-4 .n-uc-1oDYYP8bfijY{--margin-bottom:10px}div#n2-ss-4 .n-uc-Ojk097KNR83C-inner{padding:30px 10px 20px 10px}div#n2-ss-4 .n-uc-Ojk097KNR83C{width:25%}div#n2-ss-4 .n-uc-LE02zA8IubOs{--margin-bottom:10px}div#n2-ss-4 .n-uc-1e6ad684711a2-inner{padding:30px 10px 20px 10px}div#n2-ss-4 .n-uc-1e6ad684711a2{width:25%}div#n2-ss-4 .n-uc-1bfb8062f8e29{--margin-bottom:10px}div#n2-ss-4 .n-uc-pPDwYuDl9cM7-inner{padding:30px 10px 20px 10px}div#n2-ss-4 .n-uc-pPDwYuDl9cM7{width:25%}div#n2-ss-4 .n-uc-kzGGZV9ARo33{--margin-bottom:10px}div#n2-ss-4 .n-uc-u33sfLUjGqkb{width:25%}div#n2-ss-4 .n-uc-qNFYjv27Rb1g{width:25%}div#n2-ss-4 .n-uc-dg1dpr1cyxR8{width:25%}div#n2-ss-4 .n-uc-Bupo5WWKvg7k{width:25%}div#n2-ss-4 [data-hide-tabletportrait="1"]{display: none !important;}}@media (orientation: landscape) and (max-width: 900px),(orientation: portrait) and (max-width: 700px){div#n2-ss-4 .n-uc-15ef1bbf4bcaf-inner{padding:20px 10px 40px 10px}div#n2-ss-4 .n-uc-15ef1bbf4bcaf-inner > .n2-ss-layer-row-inner{width:calc(100% + 11px);margin:-5px;flex-wrap:wrap;}div#n2-ss-4 .n-uc-15ef1bbf4bcaf-inner > .n2-ss-layer-row-inner > .n2-ss-layer[data-sstype="col"]{margin:5px}div#n2-ss-4 .n-uc-191adc2a4bcf7-inner{text-align:inherit;--ssselfalign:inherit;}div#n2-ss-4 .n-uc-191adc2a4bcf7{order: 2;width:calc(100% - 10px)}div#n2-ss-4 .n-uc-12397d36ccea0{--margin-bottom:0px;--ssfont-scale:0.5}div#n2-ss-4 .n-uc-10b4708c169f4{order: 1;width:calc(100% - 10px)}div#n2-ss-4 .n-uc-7KDKj1yP1gVp{max-width:140px}div#n2-ss-4 .n-uc-1a9d34b3ac3a2-inner{padding:20px 10px 0px 10px}div#n2-ss-4 .n-uc-1a9d34b3ac3a2-inner > .n2-ss-layer-row-inner{width:calc(100% + 11px);margin:-5px;flex-wrap:wrap;}div#n2-ss-4 .n-uc-1a9d34b3ac3a2-inner > .n2-ss-layer-row-inner > .n2-ss-layer[data-sstype="col"]{margin:5px}div#n2-ss-4 .n-uc-18b79cd797aea-inner{padding:20px 10px 15px 10px}div#n2-ss-4 .n-uc-18b79cd797aea{width:calc(50% - 10px)}div#n2-ss-4 .n-uc-e0KzwopVAo5h{--margin-bottom:5px}div#n2-ss-4 .n-uc-nFxkzrybdHbZ{--ssfont-scale:0.8}div#n2-ss-4 .n-uc-eXBhDyRsdSNT{--ssfont-scale:0.8}div#n2-ss-4 .n-uc-17e419275a4c6-inner{padding:20px 10px 15px 10px}div#n2-ss-4 .n-uc-17e419275a4c6{width:calc(50% - 10px)}div#n2-ss-4 .n-uc-ZDWSkZUJNGxB{--margin-bottom:5px}div#n2-ss-4 .n-uc-C3ne0Ni506gU{--ssfont-scale:0.8}div#n2-ss-4 .n-uc-cuG6mfNjGa5D{--ssfont-scale:0.8}div#n2-ss-4 .n-uc-1ffa0c585ed7a-inner{padding:20px 10px 15px 10px}div#n2-ss-4 .n-uc-1ffa0c585ed7a{width:calc(100% - 10px)}div#n2-ss-4 .n-uc-kCV32gVEqgud{--margin-bottom:5px}div#n2-ss-4 .n-uc-R1W1biJSgnpg{--ssfont-scale:0.8}div#n2-ss-4 .n-uc-APg4aWBk5c8s{--ssfont-scale:0.8}div#n2-ss-4 .n-uc-124af27f44e3d-inner{padding:20px 10px 0px 10px}div#n2-ss-4 .n-uc-124af27f44e3d-inner > .n2-ss-layer-row-inner{width:calc(100% + 11px);margin:-5px;flex-wrap:wrap;}div#n2-ss-4 .n-uc-124af27f44e3d-inner > .n2-ss-layer-row-inner > .n2-ss-layer[data-sstype="col"]{margin:5px}div#n2-ss-4 .n-uc-1ddc65574dd59-inner{padding:20px 10px 15px 10px}div#n2-ss-4 .n-uc-1ddc65574dd59{width:calc(50% - 10px)}div#n2-ss-4 .n-uc-1fedcb60f6b70{--margin-bottom:5px}div#n2-ss-4 .n-uc-191825a44f66e{--ssfont-scale:0.8}div#n2-ss-4 .n-uc-1288f53cd395f{--ssfont-scale:0.8}div#n2-ss-4 .n-uc-114f708c7d343-inner{padding:20px 10px 15px 10px}div#n2-ss-4 .n-uc-114f708c7d343{width:calc(50% - 10px)}div#n2-ss-4 .n-uc-15b7326ce16c7{--margin-bottom:5px}div#n2-ss-4 .n-uc-1f392cff96e6d{--ssfont-scale:0.8}div#n2-ss-4 .n-uc-1b144254bd4bc{--ssfont-scale:0.8}div#n2-ss-4 .n-uc-14c74e63418ad-inner{padding:20px 10px 15px 10px}div#n2-ss-4 .n-uc-14c74e63418ad{width:calc(100% - 10px)}div#n2-ss-4 .n-uc-100000b36b37d{--margin-bottom:5px}div#n2-ss-4 .n-uc-11315b99be2ba{--ssfont-scale:0.8}div#n2-ss-4 .n-uc-1bc6041dfae43{--ssfont-scale:0.8}div#n2-ss-4 .n-uc-13314ab3a31c7-inner > .n2-ss-layer-row-inner{flex-wrap:wrap;}div#n2-ss-4 .n-uc-1c3c82b112218{width:calc(100% - 20px)}div#n2-ss-4 .n-uc-16dc434c59836{width:calc(100% - 20px)}div#n2-ss-4 .n-uc-19d8fbb86be16{width:calc(100% - 20px)}div#n2-ss-4 .n-uc-14307eddb3954{width:calc(100% - 20px)}div#n2-ss-4 .n-uc-l3YkLr0Px1jG-inner{padding:20px 10px 0px 10px}div#n2-ss-4 .n-uc-l3YkLr0Px1jG-inner > .n2-ss-layer-row-inner{width:calc(100% + 11px);margin:-5px;flex-wrap:wrap;}div#n2-ss-4 .n-uc-l3YkLr0Px1jG-inner > .n2-ss-layer-row-inner > .n2-ss-layer[data-sstype="col"]{margin:5px}div#n2-ss-4 .n-uc-RsBQ1kNwllDb-inner{padding:20px 10px 15px 10px}div#n2-ss-4 .n-uc-RsBQ1kNwllDb{width:calc(50% - 10px)}div#n2-ss-4 .n-uc-1oDYYP8bfijY{--margin-bottom:5px}div#n2-ss-4 .n-uc-mXMdHtQqNbxA{--ssfont-scale:0.8}div#n2-ss-4 .n-uc-Ojk097KNR83C-inner{padding:20px 10px 15px 10px}div#n2-ss-4 .n-uc-Ojk097KNR83C{width:calc(50% - 10px)}div#n2-ss-4 .n-uc-LE02zA8IubOs{--margin-bottom:5px}div#n2-ss-4 .n-uc-1a218b0d78a14{--ssfont-scale:0.8}div#n2-ss-4 .n-uc-1e6ad684711a2-inner{padding:20px 10px 15px 10px}div#n2-ss-4 .n-uc-1e6ad684711a2{width:calc(50% - 10px)}div#n2-ss-4 .n-uc-1bfb8062f8e29{--margin-bottom:5px}div#n2-ss-4 .n-uc-1d18356d98b75{--ssfont-scale:0.8}div#n2-ss-4 .n-uc-pPDwYuDl9cM7-inner{padding:20px 10px 15px 10px}div#n2-ss-4 .n-uc-pPDwYuDl9cM7{width:calc(50% - 10px)}div#n2-ss-4 .n-uc-kzGGZV9ARo33{--margin-bottom:5px}div#n2-ss-4 .n-uc-fNCyCe2rPu6F{--ssfont-scale:0.8}div#n2-ss-4 .n-uc-G7soEZS8XHfH-inner > .n2-ss-layer-row-inner{flex-wrap:wrap;}div#n2-ss-4 .n-uc-u33sfLUjGqkb{width:calc(100% - 20px)}div#n2-ss-4 .n-uc-qNFYjv27Rb1g{width:calc(100% - 20px)}div#n2-ss-4 .n-uc-dg1dpr1cyxR8{width:calc(100% - 20px)}div#n2-ss-4 .n-uc-Bupo5WWKvg7k{width:calc(100% - 20px)}div#n2-ss-4 [data-hide-mobileportrait="1"]{display: none !important;}}</style>
+<script src="/wp-includes/js/jquery/jquery.min.js?ver=3.6.0" id="jquery-core-js"></script>
+<script src="/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2" id="jquery-migrate-js"></script>
+<script id="codepeople-search-in-place-js-extra">
+var codepeople_search_in_place = {"own_only":"0","result_number":"10","more":"More Results","empty":"0 results","char_number":"3","root":"\/\/noroff.local\/wp-admin\/","home":"http:\/\/noroff.local","summary_length":"20","operator":"or","lang":"en","highlight_colors":["#B5DCE1","#F4E0E9","#D7E0B1","#F4D9D0","#D6CDC8","#F4E3C9","#CFDAF0","#F4EFEC"],"areas":["div.hentry","#content","#main","div.content","#middle","#container","#wrapper","article",".elementor","body"]};
+</script>
+<script src="/wp-content/plugins/search-in-place/js/codepeople_shearch_in_place.js?ver=1.0.83" id="codepeople-search-in-place-js"></script>
+<link rel="https://api.w.org/" href="/wp-json/">
+<link rel="alternate" type="application/json" href="/wp-json/wp/v2/pages/466">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="/wp-includes/wlwmanifest.xml"> 
+<meta name="generator" content="WordPress 5.8.1">
+<link rel="canonical" href="/create-your-website-with-blocks/quality_system-test-design/">
+<link rel="shortlink" href="/?p=466">
+<link rel="alternate" type="application/json+oembed" href="/wp-json/oembed/1.0/embed?url=http%3A%2F%2F%2Fcreate-your-website-with-blocks%2Fquality_system-test-design%2F">
+<link rel="alternate" type="text/xml+oembed" href="/wp-json/oembed/1.0/embed?url=http%3A%2F%2F%2Fcreate-your-website-with-blocks%2Fquality_system-test-design%2F&#038;format=xml">
+<style>.search-in-place {background-color: #F9F9F9;}
+.search-in-place {border: 1px solid #DDDDDD;}
+.search-in-place .item{border-bottom: 1px solid #DDDDDD;}.search-in-place .label{color:#333333;}
+.search-in-place .label{text-shadow: 0 1px 0 #FFFFFF;}
+.search-in-place .label{
+				background: #ECECEC;
+				background: -moz-linear-gradient(top,  #F9F9F9 0%, #ECECEC 100%);
+				background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#F9F9F9), color-stop(100%,#ECECEC));
+				background: -webkit-linear-gradient(top,  #F9F9F9 0%,#ECECEC 100%);
+				background: -o-linear-gradient(top,  #F9F9F9 0%,#ECECEC 100%);
+				background: -ms-linear-gradient(top,  #F9F9F9 0%,#ECECEC 100%);
+				background: linear-gradient(to bottom,  #F9F9F9 0%,#ECECEC 100%);
+				filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#F9F9F9', endColorstr='#ECECEC',GradientType=0 );
+			}
+.search-in-place .item.active{background-color:#FFFFFF;}</style>
+<style id="custom-background-css">body.custom-background { background-color: #ffffff; }</style>
+			<style id="wp-custom-css">.site-header{
+
+background-color: #ff2f01
+
+;
+	height: 40%;
+	margin-left:0;
+	max-width:100%;
+	padding:0;
+}
+.site{
+	background-color:white;
+	margin:0px;
+	padding:0px;
+}
+#masthead{
+	padding-right:3%;
+}
+
+h1.has-background{
+	padding:0;
+}
+.post-thumbnail,
+.entry-content .wp-audio-shortcode,
+.entry-content > *:not(.alignwide):not(.alignfull):not(.alignleft):not(.alignright):not(.wp-block-separator):not(.woocommerce),
+*[class*=inner-container] > *:not(.entry-content):not(.alignwide):not(.alignfull):not(.alignleft):not(.alignright):not(.wp-block-separator):not(.woocommerce),
+.default-max-width {
+	max-width: 100%;
+	margin-left:5%;
+	margin-right:5%;
+
+	
+}
+
+.widget-area, .pagination, .comments-pagination, .post-navigation, .site-footer, .site-header, .alignwide, .wide-max-width {
+    max-width: 100%;
+	position:relative;
+	bottom:0px;
+	
+   }
+#colophon{
+	display:none;
+}
+.wp-block-columns{ 
+	margin-top:10%;
+	
+}
+.entry-title {
+display: none;
+}
+.singular .entry-header {
+    border-bottom: 0;
+    padding-bottom: calc(2 * var(--global--spacing-vertical));
+    margin-bottom: calc(3 * var(--global--spacing-vertical));
+	
+}
+
+
+button.bg-red-button {
+   
+    min-width:90%;
+margin:0;
+	padding:17px;
+    background: linear-gradient(to bottom, #ff0000 5%, #bc3315 100%);
+	margin-bottom:2%;
+  
+  
+}
+
+hr{
+	color:lightgray;
+}
+
+.wp-block-button__link {
+	min-height:100%;
+	
+}
+
+
+.accordion {
+  background-color:#ff2f01;
+  color: black;
+  cursor: pointer;
+  padding: 18px;
+  width: 90%;
+  text-align: left;
+  border: none;
+  outline: none;
+  transition: 0.4s;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active, .accordion:hover {
+  background-color:#ffebe6;
+}
+
+/* Style the accordion panel. Note: hidden by default */
+.panel {
+  padding: 0 18px;
+  background-color: white;
+  display: none;
+  overflow: hidden;
+}
+.accordion:after {
+  content: '\02795'; /* Unicode character for "plus" sign (+) */
+  font-size: 13px;
+  color: black;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: "\2796"; /* Unicode character for "minus" sign (-) */
+}
+
+.site .button:not(:hover):not(:active):not(.has-background), button:not(:hover):not(:active):not(.has-background), input[type=submit]:not(:hover):not(:active):not(.has-background), input[type=reset]:not(:hover):not(:active):not(.has-background), .wp-block-search .wp-block-search__button:not(:hover):not(:active):not(.has-background), .wp-block-button .wp-block-button__link:not(:hover):not(:active):not(.has-background), .wp-block-file a.wp-block-file__button:not(:hover):not(:active):not(.has-background){
+	background-color:#ff2f01;
+	
+	color:black;
+;
+}
+
+.accordion:after {
+    content: '\02795';
+    font-size: 13px;
+    color: black;
+    float: right;
+    margin-left: 5px;
+	
+}
+
+.accordion {
+	margin-bottom:2%;
+}
+.panel{
+	max-width:90%;
+}
+
+
+.site-main > article > *:first-child, .site-main > .not-found > *:first-child, .entry-content > *:first-child, [class*=inner-container] > *:first-child, .wp-block-template-part > *:first-child, .wp-block-post-template :where(li > *):first-child {
+   margin-top: 20px; 
+}
+
+.primary-navigation > .primary-menu-container {
+   
+  
+    background-color: white;
+
+}
+
+.primary-navigation-open .menu-button-container {
+    background-color:white;
+}
+
+.menu-wrapper{
+	background-color:#ff2f01;
+	
+}
+
+.primary-navigation a:hover, .primary-navigation a:link, .primary-navigation a:visited {
+    color:white;
+}
+.primary-navigation > .primary-menu-container {
+	padding-left:0;
+	padding-right:0;
+	
+}
+
+.post-thumbnail, .entry-content .wp-audio-shortcode, .entry-content > *:not(.alignwide):not(.alignfull):not(.alignleft):not(.alignright):not(.wp-block-separator):not(.woocommerce), *[class*=inner-container] > *:not(.entry-content):not(.alignwide):not(.alignfull):not(.alignleft):not(.alignright):not(.wp-block-separator):not(.woocommerce), .default-max-width {
+    max-width: 90%;
+   
+}
+
+.is-style-default{
+	box-shadow: 10px 5px 5px #ececec;
+}
+
+.Slider{
+	position:relative;
+	top:-220px;
+}
+.is-style-default:hover{
+	box-shadow: 10px 5px 5px darkgrey;
+}
+.entry-header{
+	position:absolute;
+	top:-100px;
+}</style>
+		<script>(function(){this._N2=this._N2||{_r:[],_d:[],r:function(){this._r.push(arguments)},d:function(){this._d.push(arguments)}}}).call(window);!function(a){a.indexOf("Safari")>0&&-1===a.indexOf("Chrome")&&document.documentElement.style.setProperty("--ss-safari-fix-225962","1px")}(navigator.userAgent);</script><script src="/wp-content/plugins/smart-slider-3/Public/SmartSlider3/Application/Frontend/Assets/dist/n2.min.js?ver=bc3b14c4" defer async></script>
+<script src="/wp-content/plugins/smart-slider-3/Public/SmartSlider3/Application/Frontend/Assets/dist/smartslider-frontend.min.js?ver=bc3b14c4" defer async></script>
+<script src="/wp-content/plugins/smart-slider-3/Public/SmartSlider3/Slider/SliderType/Simple/Assets/dist/ss-simple.min.js?ver=bc3b14c4" defer async></script>
+<script src="/wp-content/plugins/smart-slider-3/Public/SmartSlider3/Widget/Arrow/ArrowImage/Assets/dist/w-arrow-image.min.js?ver=bc3b14c4" defer async></script>
+<script src="/wp-content/plugins/smart-slider-3/Public/SmartSlider3/Widget/Bullet/Assets/dist/w-bullet.min.js?ver=bc3b14c4" defer async></script>
+<script src="/wp-content/plugins/smart-slider-3/Public/SmartSlider3/Slider/SliderType/Block/Assets/dist/ss-block.min.js?ver=bc3b14c4" defer async></script>
+<script>_N2.r('documentReady',function(){_N2.r(["documentReady","smartslider-frontend","SmartSliderWidgetArrowImage","SmartSliderWidgetBulletTransition","ss-simple"],function(){new _N2.SmartSliderSimple('n2-ss-2',{"admin":false,"callbacks":"","background.video.mobile":1,"randomize":{"randomize":0,"randomizeFirst":0},"alias":{"id":0,"smoothScroll":0,"slideSwitch":0,"scroll":1},"align":"normal","isDelayed":0,"responsive":{"mediaQueries":{"all":false,"desktopportrait":["(min-width: 1200px)"],"tabletportrait":["(orientation: landscape) and (max-width: 1199px) and (min-width: 901px)","(orientation: portrait) and (max-width: 1199px) and (min-width: 701px)"],"mobileportrait":["(orientation: landscape) and (max-width: 900px)","(orientation: portrait) and (max-width: 700px)"]},"base":{"slideOuterWidth":1200,"slideOuterHeight":600,"sliderWidth":1200,"sliderHeight":600,"slideWidth":1200,"slideHeight":600},"hideOn":{"desktopLandscape":false,"desktopPortrait":false,"tabletLandscape":false,"tabletPortrait":false,"mobileLandscape":false,"mobilePortrait":false},"onResizeEnabled":true,"type":"auto","sliderHeightBasedOn":"real","focusUser":1,"focusEdge":"auto","breakpoints":[{"device":"tabletPortrait","type":"max-screen-width","portraitWidth":1199,"landscapeWidth":1199},{"device":"mobilePortrait","type":"max-screen-width","portraitWidth":700,"landscapeWidth":900}],"enabledDevices":{"desktopLandscape":0,"desktopPortrait":1,"tabletLandscape":0,"tabletPortrait":1,"mobileLandscape":0,"mobilePortrait":1},"sizes":{"desktopPortrait":{"width":1200,"height":600,"max":3000,"min":1200},"tabletPortrait":{"width":701,"height":350,"customHeight":false,"max":1199,"min":701},"mobilePortrait":{"width":320,"height":160,"customHeight":false,"max":900,"min":320}},"overflowHiddenPage":0,"focus":{"offsetTop":"#wpadminbar","offsetBottom":""}},"controls":{"mousewheel":0,"touch":"horizontal","keyboard":1,"blockCarouselInteraction":1},"playWhenVisible":1,"playWhenVisibleAt":0.5,"lazyLoad":0,"lazyLoadNeighbor":0,"blockrightclick":0,"maintainSession":0,"autoplay":{"enabled":0,"start":1,"duration":8000,"autoplayLoop":1,"allowReStart":0,"pause":{"click":1,"mouse":"0","mediaStarted":1},"resume":{"click":0,"mouse":"0","mediaEnded":1,"slidechanged":0},"interval":1,"intervalModifier":"loop","intervalSlide":"current"},"perspective":1000,"layerMode":{"playOnce":0,"playFirstLayer":1,"mode":"skippable","inAnimation":"mainInEnd"},"bgAnimations":0,"mainanimation":{"type":"horizontal","duration":800,"delay":0,"ease":"easeOutQuad","shiftedBackgroundAnimation":0},"carousel":1,"initCallbacks":function(){new _N2.SmartSliderWidgetArrowImage(this);new _N2.SmartSliderWidgetBulletTransition(this,{"area":10,"dotClasses":"n2-style-bcef68443b2682444059e693254dd628-dot ","mode":"","action":"click"})}})});_N2.r(["documentReady","smartslider-frontend","ss-block"],function(){new _N2.SmartSliderBlock('n2-ss-4',{"admin":false,"callbacks":"","background.video.mobile":1,"alias":{"id":0,"smoothScroll":0,"slideSwitch":0,"scroll":1},"align":"normal","isDelayed":0,"responsive":{"mediaQueries":{"all":false,"desktopportrait":["(min-width: 1200px)"],"tabletportrait":["(orientation: landscape) and (max-width: 1199px) and (min-width: 901px)","(orientation: portrait) and (max-width: 1199px) and (min-width: 701px)"],"mobileportrait":["(orientation: landscape) and (max-width: 900px)","(orientation: portrait) and (max-width: 700px)"]},"base":{"slideOuterWidth":1200,"slideOuterHeight":700,"sliderWidth":1200,"sliderHeight":700,"slideWidth":1200,"slideHeight":700},"hideOn":{"desktopLandscape":false,"desktopPortrait":false,"tabletLandscape":false,"tabletPortrait":false,"mobileLandscape":false,"mobilePortrait":false},"onResizeEnabled":true,"type":"fullwidth","sliderHeightBasedOn":"real","focusUser":1,"focusEdge":"auto","breakpoints":[{"device":"tabletPortrait","type":"max-screen-width","portraitWidth":1199,"landscapeWidth":1199},{"device":"mobilePortrait","type":"max-screen-width","portraitWidth":700,"landscapeWidth":900}],"enabledDevices":{"desktopLandscape":0,"desktopPortrait":1,"tabletLandscape":0,"tabletPortrait":1,"mobileLandscape":0,"mobilePortrait":1},"sizes":{"desktopPortrait":{"width":1200,"height":700,"max":3000,"min":1200},"tabletPortrait":{"width":701,"height":408,"customHeight":false,"max":1199,"min":701},"mobilePortrait":{"width":320,"height":186,"customHeight":false,"max":900,"min":320}},"overflowHiddenPage":0,"focus":{"offsetTop":"#wpadminbar","offsetBottom":""}},"controls":{"mousewheel":0,"touch":0,"keyboard":0,"blockCarouselInteraction":1},"playWhenVisible":1,"playWhenVisibleAt":0.5,"lazyLoad":0,"lazyLoadNeighbor":0,"blockrightclick":0,"maintainSession":0,"autoplay":{"enabled":0,"start":0,"duration":8000,"autoplayLoop":1,"allowReStart":0,"pause":{"click":1,"mouse":"enter","mediaStarted":1},"resume":{"click":0,"mouse":0,"mediaEnded":1,"slidechanged":0},"interval":1,"intervalModifier":"loop","intervalSlide":"current"},"perspective":1000,"layerMode":{"playOnce":0,"playFirstLayer":1,"mode":"skippable","inAnimation":"mainInEnd"},"initCallbacks":function(){}})})});</script>
+</head>
+
+<body class="page-template-default page page-id-466 page-child parent-pageid-6 custom-background wp-custom-logo wp-embed-responsive twentytwentyone is-light-theme has-background-white no-js singular has-main-navigation no-widgets elementor-default elementor-kit-75">
+<div id="page" class="site">
+	<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+
+	
+<header id="masthead" class="site-header has-logo has-menu" role="banner">
+
+	
+
+<div class="site-branding">
+
+			<div class="site-logo"><a href="/" class="custom-logo-link" rel="home"><img width="200" height="197" src="/wp-content/uploads/2021/08/cropped-nor.png" class="custom-logo" alt=""></a></div>
+	
+	
+	</div>
+<!-- .site-branding -->
+	
+	<nav id="site-navigation" class="primary-navigation" role="navigation" aria-label="Primary menu">
+		<div class="menu-button-container">
+			<button id="primary-mobile-menu" class="button" aria-controls="primary-menu-list" aria-expanded="false">
+				<span class="dropdown-icon open">Menu					<svg class="svg-icon" width="24" height="24" aria-hidden="true" role="img" focusable="false" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M4.5 6H19.5V7.5H4.5V6ZM4.5 12H19.5V13.5H4.5V12ZM19.5 18H4.5V19.5H19.5V18Z" fill="currentColor"></path></svg>				</span>
+				<span class="dropdown-icon close">Close					<svg class="svg-icon" width="24" height="24" aria-hidden="true" role="img" focusable="false" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 10.9394L5.53033 4.46973L4.46967 5.53039L10.9393 12.0001L4.46967 18.4697L5.53033 19.5304L12 13.0607L18.4697 19.5304L19.5303 18.4697L13.0607 12.0001L19.5303 5.53039L18.4697 4.46973L12 10.9394Z" fill="currentColor"></path></svg>				</span>
+			</button><!-- #primary-mobile-menu -->
+		</div>
+<!-- .menu-button-container -->
+		<div class="primary-menu-container"><ul id="primary-menu-list" class="menu-wrapper">
+<li id="menu-item-17" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-17"><a href="/">Home</a></li>
+<li id="menu-item-359" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-359"><a href="https://www.noroff.no/">Studies</a></li>
+<li id="menu-item-360" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-360"><a href="https://www.noroff.no/">Application</a></li>
+<li id="menu-item-361" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-361"><a href="https://www.noroff.no/">Accelerate</a></li>
+<li id="menu-item-362" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-362"><a href="https://www.noroff.no/">News</a></li>
+<li id="menu-item-363" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-363"><a href="https://www.noroff.no/">About us</a></li>
+<li id="menu-item-364" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-364"><a href="https://www.noroff.no/">Contact</a></li>
+<li class=" astm-search-menu is-menu is-dropdown menu-item">
+<a href="#" aria-label="Search Icon Link"><svg width="20" height="20" class="search-icon" role="img" viewbox="2 9 20 5" focusable="false" aria-label="Search">
+						<path class="search-icon-path" d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></svg></a><form class="is-search-form is-form-style is-form-style-3 is-form-id-0 " action="/" method="get" role="search">
+<label for="is-search-input-0"><span class="is-screen-reader-text">Search for:</span><input type="search" id="is-search-input-0" name="s" value="" class="is-search-input" placeholder="Search here..." autocomplete="off"></label><button type="submit" class="is-search-submit"><span class="is-screen-reader-text">Search Button</span><span class="is-search-icon"><svg focusable="false" aria-label="Search" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" width="24px"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></svg></span></button>
+</form>
+<div class="search-close"></div>
+</li>
+</ul></div>	</nav><!-- #site-navigation -->
+
+</header><!-- #masthead -->
+
+	<div id="content" class="site-content">
+		<div id="primary" class="content-area">
+			<main id="main" class="site-main" role="main">
+
+<article id="post-466" class="post-466 page type-page status-publish hentry entry">
+
+			<header class="entry-header alignwide">
+			<h1 class="entry-title">Quality_system-test design</h1>					</header><!-- .entry-header -->
+	
+	<div class="entry-content">
+		
+<h1 class="alignwide has-text-align-center has-text-align-wide has-black-color has-white-background-color has-text-color has-background" style="font-size:80px;line-height:1.1">The quality System</h1>
+
+
+
+<p class="has-text-align-left">The quality system shall ensure that the educations at Noroff are systematically evaluated and maintain high quality.</p>
+
+
+
+<div class="wp-block-buttons">
+<div class="wp-block-button has-custom-width wp-block-button__width-50"><a class="wp-block-button__link has-black-color has-text-color has-background" href="/sample-page/" style="background-color:#ff2f01">Quality in topics</a></div>
+
+
+
+<div class="wp-block-button has-custom-width wp-block-button__width-50 is-style-fill"><a class="wp-block-button__link has-black-color has-text-color has-background" href="/218-2/" style="background-color:#ff2f01">Quality areas</a></div>
+
+
+
+<div class="wp-block-button has-custom-width wp-block-button__width-50 is-style-fill"><a class="wp-block-button__link has-black-color has-text-color has-background" href="/quality_in_study_program/" style="background-color:#ff2f01">Quality in Study Programs</a></div>
+
+
+
+<div class="wp-block-button has-custom-width wp-block-button__width-50 is-style-fill"><a class="wp-block-button__link has-black-color has-text-color has-background" href="/roles_and_responsibilities/" style="background-color:#ff2f01">Roles and responsibilities in quality work</a></div>
+
+
+
+<div class="wp-block-button has-custom-width wp-block-button__width-50 is-style-fill"><a class="wp-block-button__link has-black-color has-text-color has-background" href="/quality-in-study-portfolio/" style="background-color:#ff2f01">Quality in study portfolio</a></div>
+
+
+
+<div class="wp-block-button has-custom-width wp-block-button__width-50 is-style-fill"><a class="wp-block-button__link has-black-color has-text-color has-background" href="/annual-wheel/" style="background-color:#ff2f01">Annual wheel for quality work</a></div>
+</div>
+
+
+
+<p>The quality system includes all education at Noroff: Bachelor, master&#8217;s and PhD educations as well as continuing and further education.&nbsp;The system includes the entire student journey from admission to completed education, as well as framework factors.</p>
+
+
+
+<div style="height:100px" aria-hidden="true" class="wp-block-spacer"></div>
+
+
+
+<h2 class="has-text-align-center">The quality system has the following main functions:</h2>
+
+
+
+<hr>
+
+
+
+<div class="wp-block-nextend-smartslider3"><div class="n2-section-smartslider fitvidsignore  n2_clear" data-ssid="2" tabindex="0" role="region" aria-label="Slider">
+<div id="n2-ss-2-align" class="n2-ss-align"><div class="n2-padding">
+<div id="n2-ss-2" data-creator="Smart Slider 3" data-responsive="auto" class="n2-ss-slider n2-ow n2-has-hover n2notransition  "><div class="n2-ss-slider-wrapper-inside">
+        <div class="n2-ss-slider-1 n2_ss__touch_element n2-ow">
+            <div class="n2-ss-slider-2 n2-ow">
+                                                <div class="n2-ss-slider-3 n2-ow">
+
+                    <div class="n2-ss-slide-backgrounds n2-ow-all">
+<div class="n2-ss-slide-background" data-public-id="1" data-mode="fill">
+<div class="n2-ss-slide-background-image" data-blur="5" data-alt="" data-title="" style="opacity:0.72;--ss-o-pos-x:44%;--ss-o-pos-y:12%"><picture><img src="/wp-content/uploads/slider/cache/81dae9c88aa177cacc2f8fc87553bc54/2021-noroff-oslo.jpg" alt="" title="" loading="lazy" class="skip-lazy" data-skip-lazy="1"></picture></div>
+<div class="n2-ss-slide-background-color" style="background-color: #ff2f01;"></div>
+</div>
+<div class="n2-ss-slide-background" data-public-id="2" data-mode="fill">
+<div class="n2-ss-slide-background-image" data-blur="5" data-alt="" data-title="" style="opacity:0.72;--ss-o-pos-x:22%;--ss-o-pos-y:17%"><picture><img src="/wp-content/uploads/slider/cache/365f6cd994eb0927a6d53b80f98a2a80/nettstudier-oktober2-thumb.jpg" alt="" title="" loading="lazy" class="skip-lazy" data-skip-lazy="1"></picture></div>
+<div class="n2-ss-slide-background-color" style="background-color: #ff2f01;"></div>
+</div>
+<div class="n2-ss-slide-background" data-public-id="3" data-mode="fill">
+<div class="n2-ss-slide-background-image" data-blur="5" data-alt="" data-title="" style="opacity:0.72;--ss-o-pos-x:25%;--ss-o-pos-y:34%"><picture><img src="/wp-content/uploads/slider/cache/845abaacce1ca6d1904532e6a21b3186/2021-noroff-stavanger-forside.jpg" alt="" title="" loading="lazy" class="skip-lazy" data-skip-lazy="1"></picture></div>
+<div class="n2-ss-slide-background-color" style="background-color: #ff2f01;"></div>
+</div>
+</div>                    <div class="n2-ss-slider-4 n2-ow">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 1200 600" data-related-device="desktopPortrait" class="n2-ow n2-ss-preserve-size n2-ss-preserve-size--slider n2-ss-slide-limiter"></svg><div data-first="1" data-slide-duration="0" data-id="3" data-slide-public-id="1" data-title="Slide 1" class="n2-ss-slide n2-ow  n2-ss-slide-3">
+<div tabindex="-1" class="n2-ss-slide--focus" role="note">Slide 1</div>
+<div class="n2-ss-layers-container n2-ss-slide-limiter n2-ow"><div class="n2-ss-layer n2-ow n-uc-ZGRX88l0hCV6" data-sstype="slide" data-pm="default"><div class="n2-ss-layer n2-ow n-uc-16610d53ccff8" data-pm="default" data-sstype="content" data-hasbackground="0"><div class="n2-ss-section-main-content n2-ss-layer-with-background n2-ss-layer-content n2-ow n-uc-16610d53ccff8-inner"><div class="n2-ss-layer n2-ow n-uc-1b6d2e874e4e1" data-pm="normal" data-sstype="layer"><div class="n2-ss-item-content n2-ss-text n2-ow-all"><div class="">
+<p class="n2-font-e7a88244c36048b7e9b590c16db86c42-paragraph   ">To promote quality in existing and planned educational offerings and ensure that students achieve a fixed learning outcome </p>
+</div></div></div></div></div></div></div>
+</div>
+<div data-slide-duration="0" data-id="4" data-slide-public-id="2" data-title="Slide 2" class="n2-ss-slide n2-ow  n2-ss-slide-4">
+<div tabindex="-1" class="n2-ss-slide--focus" role="note">Slide 2</div>
+<div class="n2-ss-layers-container n2-ss-slide-limiter n2-ow"><div class="n2-ss-layer n2-ow n-uc-ak18Tvf4yExq" data-sstype="slide" data-pm="default"><div class="n2-ss-layer n2-ow n-uc-1bc3fe1320016" data-pm="default" data-sstype="content" data-hasbackground="0"><div class="n2-ss-section-main-content n2-ss-layer-with-background n2-ss-layer-content n2-ow n-uc-1bc3fe1320016-inner"><div class="n2-ss-layer n2-ow n-uc-R9iPwFDcfDCJ" data-pm="normal" data-sstype="layer"><div class="n2-ss-item-content n2-ss-text n2-ow-all"><div class="">
+<p class="n2-font-e7a88244c36048b7e9b590c16db86c42-paragraph   ">To set a good framework, and support Noroff's main goal of being a leading provider of research and experience-based knowledge to the welfare society</p>
+</div></div></div></div></div></div></div>
+</div>
+<div data-slide-duration="0" data-id="5" data-slide-public-id="3" data-title="Slide 3" class="n2-ss-slide n2-ow  n2-ss-slide-5">
+<div tabindex="-1" class="n2-ss-slide--focus" role="note">Slide 3</div>
+<div class="n2-ss-layers-container n2-ss-slide-limiter n2-ow"><div class="n2-ss-layer n2-ow n-uc-SX3HYzgiSICY" data-sstype="slide" data-pm="default"><div class="n2-ss-layer n2-ow n-uc-1cf1a6df0ba9b" data-pm="default" data-sstype="content" data-hasbackground="0"><div class="n2-ss-section-main-content n2-ss-layer-with-background n2-ss-layer-content n2-ow n-uc-1cf1a6df0ba9b-inner"><div class="n2-ss-layer n2-ow n-uc-1aff91faa9251" data-pm="normal" data-sstype="layer"><div class="n2-ss-item-content n2-ss-text n2-ow-all"><div class="">
+<p class="n2-font-e7a88244c36048b7e9b590c16db86c42-paragraph  n2-style-654fb965c533036469fbf99fa08e4336-heading  ">To uncover and ensure follow-up of failing quality in the educations and to make visible and document the quality work at Noroff</p>
+</div></div></div></div></div></div></div>
+</div>                    </div>
+
+                                    </div>
+            </div>
+        </div>
+        <div class="n2-ss-slider-controls n2-ss-slider-controls-absolute-left-center"><div style="--widget-offset:15px;" class="n2-ss-widget nextend-arrow n2-ow-all nextend-arrow-previous  nextend-arrow-animated-fade" data-hide-mobileportrait="1" id="n2-ss-2-arrow-previous" role="button" aria-label="previous arrow" tabindex="0"><img width="32" height="32" class="skip-lazy" data-skip-lazy="1" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Ik0xMS40MzMgMTUuOTkyTDIyLjY5IDUuNzEyYy4zOTMtLjM5LjM5My0xLjAzIDAtMS40Mi0uMzkzLS4zOS0xLjAzLS4zOS0xLjQyMyAwbC0xMS45OCAxMC45NGMtLjIxLjIxLS4zLjQ5LS4yODUuNzYtLjAxNS4yOC4wNzUuNTYuMjg0Ljc3bDExLjk4IDEwLjk0Yy4zOTMuMzkgMS4wMy4zOSAxLjQyNCAwIC4zOTMtLjQuMzkzLTEuMDMgMC0xLjQybC0xMS4yNTctMTAuMjkiCiAgICAgICAgICBmaWxsPSIjZmZmZmZmIiBvcGFjaXR5PSIwLjgiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPgo8L3N2Zz4=" alt="previous arrow"></div></div>
+<div class="n2-ss-slider-controls n2-ss-slider-controls-absolute-right-center"><div style="--widget-offset:15px;" class="n2-ss-widget nextend-arrow n2-ow-all nextend-arrow-next  nextend-arrow-animated-fade" data-hide-mobileportrait="1" id="n2-ss-2-arrow-next" role="button" aria-label="next arrow" tabindex="0"><img width="32" height="32" class="skip-lazy" data-skip-lazy="1" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Ik0xMC43MjIgNC4yOTNjLS4zOTQtLjM5LTEuMDMyLS4zOS0xLjQyNyAwLS4zOTMuMzktLjM5MyAxLjAzIDAgMS40MmwxMS4yODMgMTAuMjgtMTEuMjgzIDEwLjI5Yy0uMzkzLjM5LS4zOTMgMS4wMiAwIDEuNDIuMzk1LjM5IDEuMDMzLjM5IDEuNDI3IDBsMTIuMDA3LTEwLjk0Yy4yMS0uMjEuMy0uNDkuMjg0LS43Ny4wMTQtLjI3LS4wNzYtLjU1LS4yODYtLjc2TDEwLjcyIDQuMjkzeiIKICAgICAgICAgIGZpbGw9IiNmZmZmZmYiIG9wYWNpdHk9IjAuOCIgZmlsbC1ydWxlPSJldmVub2RkIi8+Cjwvc3ZnPg==" alt="next arrow"></div></div>
+<div class="n2-ss-slider-controls n2-ss-slider-controls-absolute-center-bottom"><div style="--widget-offset:10px;" class="n2-ss-widget n2-ss-control-bullet n2-ow-all n2-ss-control-bullet-horizontal"><div class=" nextend-bullet-bar n2-bar-justify-content-center"><div class="n2-bullet n2-style-bcef68443b2682444059e693254dd628-dot " style="visibility:hidden;"></div></div></div></div>
+</div></div>
+<ss3-loader></ss3-loader>
+</div></div>
+<div class="n2_clear"></div>
+</div></div>
+
+
+
+<div class="wp-block-nextend-smartslider3"><div class="n2-section-smartslider fitvidsignore  n2_clear" data-ssid="4" tabindex="0" role="region" aria-label="Slider">
+<div id="n2-ss-4-align" class="n2-ss-align"><div class="n2-padding">
+<div id="n2-ss-4" data-creator="Smart Slider 3" data-responsive="fullwidth" class="n2-ss-slider n2-ow n2-has-hover n2notransition  ">
+        <div class="n2-ss-slider-1 n2-ow">
+            <div class="n2-ss-slider-2 n2-ow">
+                <div class="n2-ss-slide-backgrounds n2-ow-all"><div class="n2-ss-slide-background" data-public-id="1" data-mode="fill"><div class="n2-ss-slide-background-color" style="background-color: #f2f7fe;"></div></div></div>                <div class="n2-ss-slider-3 n2-ow">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 1200 700" data-related-device="desktopPortrait" class="n2-ow n2-ss-preserve-size n2-ss-preserve-size--slider n2-ss-slide-limiter"></svg><div data-first="1" data-slide-duration="0" data-id="9" data-slide-public-id="1" data-title="Block" class="n2-ss-slide n2-ow  n2-ss-slide-9">
+<div tabindex="-1" class="n2-ss-slide--focus" role="note">Block</div>
+<div class="n2-ss-layers-container n2-ss-slide-limiter n2-ow"><div class="n2-ss-layer n2-ow n-uc-dwgVErEQ5HUl" data-sstype="slide" data-pm="default"><div class="n2-ss-layer n2-ow n-uc-1f494b8b049b9" data-pm="default" data-sstype="content" data-hasbackground="0"><div class="n2-ss-section-main-content n2-ss-layer-with-background n2-ss-layer-content n2-ow n-uc-1f494b8b049b9-inner">
+<div class="n2-ss-layer n2-ow n2-ss-layer--block n2-ss-has-self-align n2-ss-stretch-layer n-uc-15ef1bbf4bcaf" data-pm="normal" data-sstype="row"><div class="n2-ss-layer-row n2-ss-layer-with-background n-uc-15ef1bbf4bcaf-inner"><div class="n2-ss-layer-row-inner ">
+<div class="n2-ss-layer n2-ow n-uc-191adc2a4bcf7" data-pm="default" data-sstype="col"><div class="n2-ss-layer-col n2-ss-layer-with-background n2-ss-layer-content n-uc-191adc2a4bcf7-inner"><div class="n2-ss-layer n2-ow n-uc-12397d36ccea0" data-pm="normal" data-sstype="layer"><div id="n2-ss-4item1" class="n2-font-0a3e7fa89e9807043879483ef9cbf599-hover   n2-ss-item-content n2-ss-text n2-ow" style="display:block;">The reporting processes with responsibility and feedback loops at Noroff are summarized in the figure below. To ensure further development of the quality, the system is based on feedback loops. Assessment and analysis shall lead to follow-up and measures at the lowest possible level in the organization. <br><br>
+</div></div></div></div>
+<div class="n2-ss-layer n2-ow n-uc-10b4708c169f4" data-pm="default" data-sstype="col"><div class="n2-ss-layer-col n2-ss-layer-with-background n2-ss-layer-content n-uc-10b4708c169f4-inner"><div class="n2-ss-layer n2-ow n-uc-7KDKj1yP1gVp" data-pm="normal" data-sstype="layer"><div class=" n2-ss-item-image n2-ss-item-content n2-ow-all"><img id="n2-ss-4item2" alt="" class="skip-lazy" width="2400" height="1303" data-skip-lazy="1" src="/wp-content/uploads/2021/08/rapporteringsprosess.png"></div></div></div></div>
+</div></div></div>
+<div class="n2-ss-layer n2-ow n2-ss-layer--block n2-ss-has-self-align n-uc-1a9d34b3ac3a2" data-pm="normal" data-sstype="row"><div class="n2-ss-layer-row n2-ss-layer-with-background n-uc-1a9d34b3ac3a2-inner"><div class="n2-ss-layer-row-inner ">
+<div class="n2-ss-layer n2-ow n-uc-18b79cd797aea" data-pm="default" data-sstype="col"><div class="n2-ss-layer-col n2-ss-layer-with-background n2-ss-layer-content n-uc-18b79cd797aea-inner">
+<div class="n2-ss-layer n2-ow n-uc-e0KzwopVAo5h" data-pm="normal" data-sstype="layer"><div class=" n2-ss-item-image n2-ss-item-content n2-ow-all"><img id="n2-ss-4item3" alt="" class="skip-lazy" width="512" height="512" data-skip-lazy="1" src="/wp-content/uploads/2021/09/university.png"></div></div>
+<div class="n2-ss-layer n2-ow n-uc-nFxkzrybdHbZ" data-pm="normal" data-sstype="layer"><div id="n2-ss-4item4" class="n2-font-b231beb995d59f799a7c26f9c12d08a1-hover   n2-ss-item-content n2-ss-text n2-ow" style="display:block;">The board</div></div>
+<div class="n2-ss-layer n2-ow n-uc-eXBhDyRsdSNT" data-pm="normal" data-sstype="layer"><div id="n2-ss-4item5" class="n2-font-e9d5534e4b657bc83779529b8d923379-hover   n2-ss-item-content n2-ss-text n2-ow" style="display:block;">-Is responsible for ensuring that the professional business maintains high quality.<br><br>-Provides management signals for priorities for the next period and ensures that budgetary priorities and other decisions facilitate good quality development of the university's study portfolio.</div></div>
+</div></div>
+<div class="n2-ss-layer n2-ow n-uc-17e419275a4c6" data-pm="default" data-sstype="col"><div class="n2-ss-layer-col n2-ss-layer-with-background n2-ss-layer-content n-uc-17e419275a4c6-inner">
+<div class="n2-ss-layer n2-ow n-uc-ZDWSkZUJNGxB" data-pm="normal" data-sstype="layer"><div class=" n2-ss-item-image n2-ss-item-content n2-ow-all"><img id="n2-ss-4item6" alt="" class="skip-lazy" width="512" height="512" data-skip-lazy="1" src="/wp-content/uploads/2021/09/building.png"></div></div>
+<div class="n2-ss-layer n2-ow n-uc-C3ne0Ni506gU" data-pm="normal" data-sstype="layer"><div id="n2-ss-4item7" class="n2-font-b231beb995d59f799a7c26f9c12d08a1-hover   n2-ss-item-content n2-ss-text n2-ow" style="display:block;">Institution</div></div>
+<div class="n2-ss-layer n2-ow n-uc-cuG6mfNjGa5D" data-pm="normal" data-sstype="layer"><div id="n2-ss-4item8" class="n2-font-85efc35fad07288bbbec9a997c30a2b5-hover   n2-ss-item-content n2-ss-text n2-ow" style="display:block;">-The Rectorate has overall responsibility for the quality work at Noroff, and for the board to receive information about the study quality.<br><br>-The Rector is responsible for ensuring that the board's guidelines are followed up in the annual management dialogue meetings with the faculties. </div></div>
+</div></div>
+<div class="n2-ss-layer n2-ow n-uc-1ffa0c585ed7a" data-pm="default" data-sstype="col"><div class="n2-ss-layer-col n2-ss-layer-with-background n2-ss-layer-content n-uc-1ffa0c585ed7a-inner">
+<div class="n2-ss-layer n2-ow n-uc-kCV32gVEqgud" data-pm="normal" data-sstype="layer"><div class=" n2-ss-item-image n2-ss-item-content n2-ow-all"><img id="n2-ss-4item9" alt="" class="skip-lazy" width="512" height="512" data-skip-lazy="1" src="/wp-content/uploads/2021/09/group.png"></div></div>
+<div class="n2-ss-layer n2-ow n-uc-R1W1biJSgnpg" data-pm="normal" data-sstype="layer"><div id="n2-ss-4item10" class="n2-font-b231beb995d59f799a7c26f9c12d08a1-hover   n2-ss-item-content n2-ss-text n2-ow" style="display:block;">Faculty</div></div>
+<div class="n2-ss-layer n2-ow n-uc-APg4aWBk5c8s" data-pm="normal" data-sstype="layer"><div id="n2-ss-4item11" class="n2-font-e9d5534e4b657bc83779529b8d923379-hover   n2-ss-item-content n2-ss-text n2-ow" style="display:block;">-The dean / center manager has overall strategic and coordinating responsibility for all development and R&D activities at the faculty / center.<br><br>-The dean / center manager is responsible for ensuring that the board's guidelines and the faculties' own action plans / measures to improve the quality of education are followed up. <br>
+</div></div>
+</div></div>
+</div></div></div>
+<div class="n2-ss-layer n2-ow n2-ss-layer--block n2-ss-has-self-align n-uc-124af27f44e3d" data-pm="normal" data-sstype="row"><div class="n2-ss-layer-row n2-ss-layer-with-background n-uc-124af27f44e3d-inner"><div class="n2-ss-layer-row-inner ">
+<div class="n2-ss-layer n2-ow n-uc-1ddc65574dd59" data-pm="default" data-sstype="col"><div class="n2-ss-layer-col n2-ss-layer-with-background n2-ss-layer-content n-uc-1ddc65574dd59-inner">
+<div class="n2-ss-layer n2-ow n-uc-1fedcb60f6b70" data-pm="normal" data-sstype="layer"><div class=" n2-ss-item-image n2-ss-item-content n2-ow-all"><img id="n2-ss-4item12" alt="" class="skip-lazy" width="512" height="512" data-skip-lazy="1" src="/wp-content/uploads/2021/09/businessman.png"></div></div>
+<div class="n2-ss-layer n2-ow n-uc-191825a44f66e" data-pm="normal" data-sstype="layer"><div id="n2-ss-4item13" class="n2-font-b231beb995d59f799a7c26f9c12d08a1-hover   n2-ss-item-content n2-ss-text n2-ow" style="display:block;">Institute</div></div>
+<div class="n2-ss-layer n2-ow n-uc-1288f53cd395f" data-pm="normal" data-sstype="layer"><div id="n2-ss-4item14" class="n2-font-e9d5534e4b657bc83779529b8d923379-hover   n2-ss-item-content n2-ss-text n2-ow" style="display:block;">-The head of department is responsible for quality assurance and development of the department's educations and overall portfolio.<br><br>-The head of department is responsible for following up the board's and faculty's guidelines and the department's own action plans in work with quality assurance and development of the department's study portfolio. </div></div>
+</div></div>
+<div class="n2-ss-layer n2-ow n-uc-114f708c7d343" data-pm="default" data-sstype="col"><div class="n2-ss-layer-col n2-ss-layer-with-background n2-ss-layer-content n-uc-114f708c7d343-inner">
+<div class="n2-ss-layer n2-ow n-uc-15b7326ce16c7" data-pm="normal" data-sstype="layer"><div class=" n2-ss-item-image n2-ss-item-content n2-ow-all"><img id="n2-ss-4item15" alt="" class="skip-lazy" width="512" height="512" data-skip-lazy="1" src="/wp-content/uploads/2021/09/subject.png"></div></div>
+<div class="n2-ss-layer n2-ow n-uc-1f392cff96e6d" data-pm="normal" data-sstype="layer"><div id="n2-ss-4item16" class="n2-font-b231beb995d59f799a7c26f9c12d08a1-hover   n2-ss-item-content n2-ss-text n2-ow" style="display:block;">Program</div></div>
+<div class="n2-ss-layer n2-ow n-uc-1b144254bd4bc" data-pm="normal" data-sstype="layer"><div id="n2-ss-4item17" class="n2-font-85efc35fad07288bbbec9a997c30a2b5-hover   n2-ss-item-content n2-ss-text n2-ow" style="display:block;">-The study program manager has academic responsibility for the study program as a whole. <br><br>-The study program manager is responsible for following up the department's action plans in work with quality assurance and development of the study program. </div></div>
+</div></div>
+<div class="n2-ss-layer n2-ow n-uc-14c74e63418ad" data-pm="default" data-sstype="col"><div class="n2-ss-layer-col n2-ss-layer-with-background n2-ss-layer-content n-uc-14c74e63418ad-inner">
+<div class="n2-ss-layer n2-ow n-uc-100000b36b37d" data-pm="normal" data-sstype="layer"><div class=" n2-ss-item-image n2-ss-item-content n2-ow-all"><img id="n2-ss-4item18" alt="" class="skip-lazy" width="512" height="512" data-skip-lazy="1" src="/wp-content/uploads/2021/09/subject.png"></div></div>
+<div class="n2-ss-layer n2-ow n-uc-11315b99be2ba" data-pm="normal" data-sstype="layer"><div id="n2-ss-4item19" class="n2-font-b231beb995d59f799a7c26f9c12d08a1-hover   n2-ss-item-content n2-ss-text n2-ow" style="display:block;">Subject</div></div>
+<div class="n2-ss-layer n2-ow n-uc-1bc6041dfae43" data-pm="normal" data-sstype="layer"><div id="n2-ss-4item20" class="n2-font-85efc35fad07288bbbec9a997c30a2b5-hover   n2-ss-item-content n2-ss-text n2-ow" style="display:block;">-The course coordinator is responsible for planning, implementation and development of the course.<br><br>-The course coordinator is responsible for following up the course's and the department's action plans in work with quality assurance and development of the course. </div></div>
+</div></div>
+</div></div></div>
+<div class="n2-ss-layer n2-ow n2-ss-layer--block n2-ss-has-self-align n-uc-13314ab3a31c7" data-pm="normal" data-sstype="row"><div class="n2-ss-layer-row n2-ss-layer-with-background n-uc-13314ab3a31c7-inner"><div class="n2-ss-layer-row-inner ">
+<div class="n2-ss-layer n2-ow n-uc-1c3c82b112218" data-pm="default" data-sstype="col"><div class="n2-ss-layer-col n2-ss-layer-with-background n2-ss-layer-content n-uc-1c3c82b112218-inner"></div></div>
+<div class="n2-ss-layer n2-ow n-uc-16dc434c59836" data-pm="default" data-sstype="col"><div class="n2-ss-layer-col n2-ss-layer-with-background n2-ss-layer-content n-uc-16dc434c59836-inner"></div></div>
+<div class="n2-ss-layer n2-ow n-uc-19d8fbb86be16" data-pm="default" data-sstype="col"><div class="n2-ss-layer-col n2-ss-layer-with-background n2-ss-layer-content n-uc-19d8fbb86be16-inner"></div></div>
+<div class="n2-ss-layer n2-ow n-uc-14307eddb3954" data-pm="default" data-sstype="col"><div class="n2-ss-layer-col n2-ss-layer-with-background n2-ss-layer-content n-uc-14307eddb3954-inner"></div></div>
+</div></div></div>
+</div></div></div></div>
+</div>                </div>
+                            </div>
+        </div>
+        </div>
+<ss3-loader></ss3-loader>
+</div></div>
+<div class="n2_clear"></div>
+</div></div>
+
+
+
+<h2>Requirements and regulations</h2>
+
+
+
+<p><a href="https://lovdata.no/dokument/NL/lov/2005-04-01-15">The Universities and University Colleges Act</a>&nbsp;(the Universities and University Colleges Act) requires all universities and colleges to have a system for quality assurance that ensures and further develops the quality of the educations.&nbsp;</p>
+
+
+
+<p>In addition, there are a number of national and local requirements for and guidelines for quality work in the following external and internal regulations and management documents:</p>
+
+
+
+<ul>
+<li>
+<a href="http://www.lovdata.no/cgi-wift/ldles?doc=/sf/sf/sf-20100201-0096.html">Regulations on quality assurance and quality development in higher education and vocational education</a>&nbsp;(study quality<a href="http://www.lovdata.no/cgi-wift/ldles?doc=/sf/sf/sf-20100201-0096.html">&nbsp;regulations</a>&nbsp;)&nbsp;</li>
+<li>
+<a href="https://lovdata.no/dokument/SF/forskrift/2017-02-07-137">Regulations on supervision of the quality of education in higher education</a>&nbsp;(the study<a href="https://lovdata.no/dokument/SF/forskrift/2017-02-07-137">&nbsp;supervision regulations</a>&nbsp;)&nbsp;</li>
+<li><a href="https://lovdata.no/dokument/SF/forskrift/2005-12-01-1392">Regulations on requirements for master&#8217;s degrees</a></li>
+<li><a href="https://lovdata.no/dokument/SF/forskrift/2017-01-06-13">Regulations on admission to higher education</a></li>
+<li><a href="https://www.regjeringen.no/no/tema/utdanning/hoyere-utdanning/nasjonalt-kvalifikasjonsrammeverk/id564809/">The qualifications framework for higher education</a></li>
+<li><a href="https://lovdata.no/dokument/SF/forskrift/2012-08-28-841">Regulations on the degree of Ph.D.&nbsp;at Noroff &#8211; the metropolitan university</a></li>
+<li><a href="https://lovdata.no/dokument/SF/forskrift/2012-06-26-718">Regulations on studies and exams at Noroff &#8211; metropolitan university</a></li>
+<li><a href="https://lovdata.no/dokument/SF/forskrift/2015-12-15-1681">Regulations on admission to studies at Noroff &#8211; metropolitan university</a></li>
+<li><a href="https://www.oslomet.no/om/strategi-og-visjon">Strategy 2024</a></li>
+</ul>
+
+
+
+
+
+<div class="wp-block-cover alignwide has-background-dim is-style-twentytwentyone-border" style="background-color:#ff2f01"><div class="wp-block-cover__inner-container">
+<div class="wp-block-columns">
+<div class="wp-block-column"></div>
+</div>
+
+
+
+<div style="height:20px" aria-hidden="true" class="wp-block-spacer"></div>
+
+
+
+<div class="wp-block-columns">
+<div class="wp-block-column">
+<p><strong>About Noroff</strong></p>
+
+
+
+<p class="has-extra-small-font-size">At Noroff, the digital innovators of the future are studying.The educational offer consists of&nbsp;<a href="https://www.noroff.no/studier/hoyskole">college</a>&nbsp;, <a href="https://www.noroff.no/studier/fagskole">vocational school</a>&nbsp;and&nbsp;<a href="https://www.noroff.no/studier/nettstudier">online studies</a>.We have campuses in&nbsp;<a href="https://www.noroff.no/om/studiesteder/oslo">Oslo</a>,<a href="https://www.noroff.no/om/studiesteder/bergen">Bergen</a>,<a href="https://www.noroff.no/om/studiesteder/stavanger">Stavanger</a>&nbsp;and&nbsp;<a href="https://www.noroff.no/om/studiesteder/kristiansand">Kristiansand</a>.Read more&nbsp;<a href="https://www.noroff.no/om">about us</a>&nbsp;.</p>
+
+
+
+<p><a href="https://static.noroff.no/cms/docs/Noroff-PrivacyNoticeWebsite_20210728_Norwegian.pdf">Privacy statement for Noroff</a></p>
+
+
+
+<p><a href="https://static.noroff.no/cms/docs/POL_Cookie_Policy_20210608_V01.2_N_F.pdf">Cookies on Noroff.no</a></p>
+</div>
+
+
+
+<div class="wp-block-column">
+<p><strong>Studies</strong></p>
+
+
+
+<p class="has-extra-small-font-size"><a href="https://www.noroff.no/studier/hoyskole/cyber-security">Bachelor in cyber security</a><br><a href="https://www.noroff.no/studier/hoyskole/applied-data-science">Bachelor in applied data science</a><br><a href="https://www.noroff.no/studier/hoyskole/digital-etterforskning">Bachelor in digital investigation</a><br><a href="https://www.noroff.no/studier/hoyskole/interaktive-medier-animasjon">Bachelor in interactive media &#8211; animation</a><br><a href="https://www.noroff.no/studier/hoyskole/interaktive-medier-spill">Bachelor in interactive media &#8211; games</a><br><a href="https://www.noroff.no/studier/fagskole/frontend-utvikling">Frontend development</a><br><a href="https://www.noroff.no/studier/fagskole/ux-design">UX design<br></a><a href="https://www.noroff.no/studier/fagskole/ui-design">UI design</a><br><a href="https://www.noroff.no/studier/fagskole/vfx-visuelle-effekter">VFX &#8211; Visual effects</a><br><a href="https://www.noroff.no/studier/fagskole/grafisk-design">Graphic design</a><br><a href="https://www.noroff.no/studier/fagskole/lyd-musikkproduksjon">Sound and music</a><br><a href="https://www.noroff.no/studier/fagskole/filmproduksjon">production Film production</a><br><a href="https://www.noroff.no/studier/fagskole/digital-prototyping">Digital prototyping</a><br><a href="https://www.noroff.no/studier/fagskole/teknisk-design-dak">Technical design with ROOF 2D / 3D</a><a href="https://www.noroff.no/studier/fagskole/teknisk-design-dak"></a><br><a href="https://www.noroff.no/studier/fagskole/digital-markedsforing">Digital marketing</a><br><a href="https://www.noroff.no/studier/fagskole/videomarkedsforing-sosiale-medier">Social media video&nbsp;</a><a href="https://www.noroff.no/studier/fagskole/digital-markedsforing">marketing</a><br><a href="https://www.noroff.no/studier/fagskole/3d-design-spillteknologi">3D design and game technology</a><br><a href="https://www.noroff.no/studier/fagskole/3d-design-spillteknologi-interaktiv">3D design and game technology &#8211; Interactive</a><br><a href="https://www.noroff.no/studier/fagskole/3d-design-spillteknologi-innholdsutvikling">3D design and game technology &#8211; Content development</a><br><a href="https://www.noroff.no/studier/fagskole/anvendt-maskinlaering">Applied machine learning</a><br><a href="https://www.noroff.no/studier/fagskole/nettverk-it-sikkerhet">Network and IT security</a><br><a href="https://www.noroff.no/studier/fagskole/nettverks-systemadministrasjon">Network and system administration</a></p>
+</div>
+
+
+
+<div class="wp-block-column">
+<p>Contact Us</p>
+
+
+
+<p class="has-extra-small-font-size"><strong>Noroff Education AS</strong><br>Tordenskjoldsgate 9<br>4612 Kristiansand S38 00 00 00<br><a href="mailto:utdanning@noroff.no">utdanning@noroff.no</a></p>
+</div>
+</div>
+
+
+
+<div class="wp-block-columns">
+<div class="wp-block-column"></div>
+
+
+
+<div class="wp-block-column"></div>
+
+
+
+<div class="wp-block-column"></div>
+
+
+
+<div class="wp-block-column"></div>
+</div>
+</div></div>
+
+
+
+<p></p>
+	</div>
+<!-- .entry-content -->
+
+	</article><!-- #post-466 -->
+			</main><!-- #main -->
+		</div>
+<!-- #primary -->
+	</div>
+<!-- #content -->
+
+	
+	<footer id="colophon" class="site-footer" role="contentinfo">
+
+					<nav aria-label="Secondary menu" class="footer-navigation">
+				<ul class="footer-navigation-wrapper">
+					<li id="menu-item-21" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-21"><a href="https://www.facebook.com/wordpress"><svg class="svg-icon" width="24" height="24" aria-hidden="true" role="img" focusable="false" viewbox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.5 2 2 6.5 2 12c0 5 3.7 9.1 8.4 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.3v7C18.3 21.1 22 17 22 12c0-5.5-4.5-10-10-10z"></path></svg><span class="screen-reader-text">Facebook</span></a></li>
+<li id="menu-item-22" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-22"><a href="https://twitter.com/wordpress"><svg class="svg-icon" width="24" height="24" aria-hidden="true" role="img" focusable="false" viewbox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M22.23,5.924c-0.736,0.326-1.527,0.547-2.357,0.646c0.847-0.508,1.498-1.312,1.804-2.27 c-0.793,0.47-1.671,0.812-2.606,0.996C18.324,4.498,17.257,4,16.077,4c-2.266,0-4.103,1.837-4.103,4.103 c0,0.322,0.036,0.635,0.106,0.935C8.67,8.867,5.647,7.234,3.623,4.751C3.27,5.357,3.067,6.062,3.067,6.814 c0,1.424,0.724,2.679,1.825,3.415c-0.673-0.021-1.305-0.206-1.859-0.513c0,0.017,0,0.034,0,0.052c0,1.988,1.414,3.647,3.292,4.023 c-0.344,0.094-0.707,0.144-1.081,0.144c-0.264,0-0.521-0.026-0.772-0.074c0.522,1.63,2.038,2.816,3.833,2.85 c-1.404,1.1-3.174,1.756-5.096,1.756c-0.331,0-0.658-0.019-0.979-0.057c1.816,1.164,3.973,1.843,6.29,1.843 c7.547,0,11.675-6.252,11.675-11.675c0-0.178-0.004-0.355-0.012-0.531C20.985,7.47,21.68,6.747,22.23,5.924z"></path></svg><span class="screen-reader-text">Twitter</span></a></li>
+<li id="menu-item-23" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-23"><a href="https://www.instagram.com/explore/tags/wordcamp/"><svg class="svg-icon" width="24" height="24" aria-hidden="true" role="img" focusable="false" viewbox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M12,4.622c2.403,0,2.688,0.009,3.637,0.052c0.877,0.04,1.354,0.187,1.671,0.31c0.42,0.163,0.72,0.358,1.035,0.673 c0.315,0.315,0.51,0.615,0.673,1.035c0.123,0.317,0.27,0.794,0.31,1.671c0.043,0.949,0.052,1.234,0.052,3.637 s-0.009,2.688-0.052,3.637c-0.04,0.877-0.187,1.354-0.31,1.671c-0.163,0.42-0.358,0.72-0.673,1.035 c-0.315,0.315-0.615,0.51-1.035,0.673c-0.317,0.123-0.794,0.27-1.671,0.31c-0.949,0.043-1.233,0.052-3.637,0.052 s-2.688-0.009-3.637-0.052c-0.877-0.04-1.354-0.187-1.671-0.31c-0.42-0.163-0.72-0.358-1.035-0.673 c-0.315-0.315-0.51-0.615-0.673-1.035c-0.123-0.317-0.27-0.794-0.31-1.671C4.631,14.688,4.622,14.403,4.622,12 s0.009-2.688,0.052-3.637c0.04-0.877,0.187-1.354,0.31-1.671c0.163-0.42,0.358-0.72,0.673-1.035 c0.315-0.315,0.615-0.51,1.035-0.673c0.317-0.123,0.794-0.27,1.671-0.31C9.312,4.631,9.597,4.622,12,4.622 M12,3 C9.556,3,9.249,3.01,8.289,3.054C7.331,3.098,6.677,3.25,6.105,3.472C5.513,3.702,5.011,4.01,4.511,4.511 c-0.5,0.5-0.808,1.002-1.038,1.594C3.25,6.677,3.098,7.331,3.054,8.289C3.01,9.249,3,9.556,3,12c0,2.444,0.01,2.751,0.054,3.711 c0.044,0.958,0.196,1.612,0.418,2.185c0.23,0.592,0.538,1.094,1.038,1.594c0.5,0.5,1.002,0.808,1.594,1.038 c0.572,0.222,1.227,0.375,2.185,0.418C9.249,20.99,9.556,21,12,21s2.751-0.01,3.711-0.054c0.958-0.044,1.612-0.196,2.185-0.418 c0.592-0.23,1.094-0.538,1.594-1.038c0.5-0.5,0.808-1.002,1.038-1.594c0.222-0.572,0.375-1.227,0.418-2.185 C20.99,14.751,21,14.444,21,12s-0.01-2.751-0.054-3.711c-0.044-0.958-0.196-1.612-0.418-2.185c-0.23-0.592-0.538-1.094-1.038-1.594 c-0.5-0.5-1.002-0.808-1.594-1.038c-0.572-0.222-1.227-0.375-2.185-0.418C14.751,3.01,14.444,3,12,3L12,3z M12,7.378 c-2.552,0-4.622,2.069-4.622,4.622S9.448,16.622,12,16.622s4.622-2.069,4.622-4.622S14.552,7.378,12,7.378z M12,15 c-1.657,0-3-1.343-3-3s1.343-3,3-3s3,1.343,3,3S13.657,15,12,15z M16.804,6.116c-0.596,0-1.08,0.484-1.08,1.08 s0.484,1.08,1.08,1.08c0.596,0,1.08-0.484,1.08-1.08S17.401,6.116,16.804,6.116z"></path></svg><span class="screen-reader-text">Instagram</span></a></li>
+<li id="menu-item-24" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-24"><a href="mailto:wordpress@example.com"><svg class="svg-icon" width="24" height="24" aria-hidden="true" role="img" focusable="false" viewbox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M20,4H4C2.895,4,2,4.895,2,6v12c0,1.105,0.895,2,2,2h16c1.105,0,2-0.895,2-2V6C22,4.895,21.105,4,20,4z M20,8.236l-8,4.882 L4,8.236V6h16V8.236z"></path></svg><span class="screen-reader-text">Email</span></a></li>
+				</ul>
+<!-- .footer-navigation-wrapper -->
+			</nav><!-- .footer-navigation -->
+				<div class="site-info">
+			<div class="site-name">
+									<div class="site-logo"><a href="/" class="custom-logo-link" rel="home"><img width="200" height="197" src="/wp-content/uploads/2021/08/cropped-nor.png" class="custom-logo" alt=""></a></div>
+							</div>
+<!-- .site-name -->
+			<div class="powered-by">
+				Proudly powered by <a href="https://wordpress.org/">WordPress</a>.			</div>
+<!-- .powered-by -->
+
+		</div>
+<!-- .site-info -->
+	</footer><!-- #colophon -->
+
+</div>
+<!-- #page -->
+
+<script>document.body.classList.remove("no-js");</script>	<script>
+	if ( -1 !== navigator.userAgent.indexOf( 'MSIE' ) || -1 !== navigator.appVersion.indexOf( 'Trident/' ) ) {
+		document.body.classList.add( 'is-IE' );
+	}
+	</script>
+	<style type="text/css" media="screen">.is-menu path.search-icon-path { fill: #ffffff;}body .popup-search-close:after, body .search-close:after { border-color: #ffffff;}body .popup-search-close:before, body .search-close:before { border-color: #ffffff;}</style>
+<link rel="stylesheet" id="wpda_org_chart_front_css-css" href="/wp-content/plugins/organization-chart/front/css/front_css.css?ver=10.0" media="all">
+<link rel="stylesheet" id="wpda_org_chart_front_popup_effects-css" href="/wp-content/plugins/organization-chart/front/css/popup_effects.css?ver=10.0" media="all">
+<script id="rtrar.appLocal-js-extra">
+var rtafr = {"rules":""};
+</script>
+<script src="/wp-content/plugins/real-time-auto-find-and-replace/assets/js/rtafar.local.js?ver=1.3.0" id="rtrar.appLocal-js"></script>
+<script src="/wp-includes/js/jquery/ui/effect.min.js?ver=1.12.1" id="jquery-effects-core-js"></script>
+<script src="/wp-includes/js/jquery/ui/effect-slide.min.js?ver=1.12.1" id="jquery-effects-slide-js"></script>
+<script src="/wp-includes/js/jquery/ui/effect-highlight.min.js?ver=1.12.1" id="jquery-effects-highlight-js"></script>
+<script src="/wp-includes/js/jquery/ui/effect-fold.min.js?ver=1.12.1" id="jquery-effects-fold-js"></script>
+<script src="/wp-includes/js/jquery/ui/effect-blind.min.js?ver=1.12.1" id="jquery-effects-blind-js"></script>
+<script src="/wp-content/plugins/show-hidecollapse-expand/assets/js/bg-show-hide.js?ver=5.8.1" id="bg-show-hide-script-js"></script>
+<script id="twenty-twenty-one-ie11-polyfills-js-after">
+( Element.prototype.matches && Element.prototype.closest && window.NodeList && NodeList.prototype.forEach ) || document.write( '<script src="http://noroff.local/wp-content/themes/twentytwentyone/assets/js/polyfills.js?ver=1.4"><\/scr' + 'ipt>' );
+</script>
+<script src="/wp-content/themes/twentytwentyone/assets/js/primary-navigation.js?ver=1.4" id="twenty-twenty-one-primary-navigation-script-js"></script>
+<script src="/wp-content/themes/twentytwentyone/assets/js/responsive-embeds.js?ver=1.4" id="twenty-twenty-one-responsive-embeds-script-js"></script>
+<script src="/wp-content/plugins/real-time-auto-find-and-replace/assets/js/rtafar.app.min.js?ver=1.3.0" id="rtrar.app-js"></script>
+<script id="ivory-search-scripts-js-extra">
+var IvorySearchVars = {"is_analytics_enabled":"1"};
+</script>
+<script src="/wp-content/plugins/add-search-to-menu/public/js/ivory-search.min.js?ver=4.6.6" id="ivory-search-scripts-js"></script>
+<script src="/wp-includes/js/wp-embed.min.js?ver=5.8.1" id="wp-embed-js"></script>
+<script src="/wp-content/plugins/organization-chart/front/js/front_js.js?ver=10.0" id="wpda_org_chart_front_js-js"></script>
+<script id="wpda_org_chart_front_popup_js-js-extra">
+var wpda_org_chart_responsive_sizes = {"tablet":"1000","mobile":"450"};
+</script>
+<script src="/wp-content/plugins/organization-chart/front/js/front_popup.js?ver=10.0" id="wpda_org_chart_front_popup_js-js"></script>
+	<script>
+	/(trident|msie)/i.test(navigator.userAgent)&&document.getElementById&&window.addEventListener&&window.addEventListener("hashchange",(function(){var t,e=location.hash.substring(1);/^[A-z0-9_-]+$/.test(e)&&(t=document.getElementById(e))&&(/^(?:a|select|input|button|textarea)$/i.test(t.tagName)||(t.tabIndex=-1),t.focus())}),!1);
+	</script>
+	
+</body>
+</html>
